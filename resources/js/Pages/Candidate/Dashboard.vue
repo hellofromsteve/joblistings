@@ -1,12 +1,6 @@
 <script setup>
 import FlashMessage from "../../Components/FlashMessage.vue";
 
-// defineProps({
-//     error: {
-//         type: String,
-//         default: null,
-//     },
-// });
 
 </script>
 <template>

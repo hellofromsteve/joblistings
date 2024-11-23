@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::inertia('/', 'Guest/Home')->name('home');
 Route::inertia('/about', 'Guest/About')->name('about');
 Route::inertia('/jobs', 'Jobs/View')->name('jobs.index');
-Route::get('/job/create', [Listings::class, 'create'])->middleware(['auth', 'verified'])->name('jobs.create');
+Route::get('/job/create', [Listings::class, 'create'])->middleware(['auth', 'verified'])->name('job.create');
+Route::get('/job/show', [Listings::class, 'index'])->name('job.view');
 
 
 // Email Routes
@@ -32,6 +33,7 @@ Route::middleware(['auth', 'verified', 'candidate'])->prefix('candidate')->group
 // Employer Routes
 Route::middleware(['auth', 'verified', 'employer'])->prefix('employer')->group(function () {
     Route::get('/dashboard', fn() => inertia('Employer/Dashboard'))->name('employer.dashboard');
+    Route::post('job/create', [Listings::class, 'store'])->name('job.store');
 });
 
 

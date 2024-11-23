@@ -36,20 +36,23 @@
                     </div>
                     <div class="nav-menus-wrapper" style="transition-property: none;">
                         <ul class="nav-menu">
-                            <li class="active">
+                            <li :class="{ active: $page.component === 'Guest/Home' }">
                                 <Link :href="route('home')">Home</Link>
                             </li>
+                            <li :class="{ active: $page.component === 'Guest/Jobs' }">
+                                <Link :href="route('job.view')">All Jobs</Link>
+                            </li>
 
-                            <li>
+                            <li :class="{ active: $page.component === 'Guest/About' }">
                                 <Link :href="route('about')">About Us</Link>
                             </li>
-                            <li>
+                            <li :class="{ active: $page.component === 'Guest/ContatUs' }">
                                 <Link href="#">Contact Us</Link>
                             </li>
-                            <li>
+                            <li :class="{ active: $page.component === 'Guest/Help' }">
                                 <Link href="#">Help</Link>
                             </li>
-                            <li>
+                            <li :class="{ active: $page.component === 'Guest/Blog' }">
                                 <Link href="#">Blog</Link>
                             </li>
 

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Listing;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,11 +20,33 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
 
             'full_name' => 'Stephen Asare',
-            'email' => 'a@a.com',
+            'email' => 'c@c.com',
             'phone' => 123,
-            'password' => Hash::make('aaa'),
+            'password' => Hash::make('ccc'),
             'account_type' => 'candidate',
             'user_account' => 00000000,
         ]);
+
+        User::factory()->create([
+
+            'full_name' => 'Stephen Asare',
+            'email' => 'e@e.com',
+            'phone' => 123,
+            'password' => Hash::make('eee'),
+            'account_type' => 'employer',
+            'user_account' => 99999999,
+        ]);
+
+        User::factory()->create([
+
+            'full_name' => 'Stephen Asare',
+            'email' => 'ee@e.com',
+            'phone' => 123,
+            'password' => Hash::make('eee'),
+            'account_type' => 'employer',
+            'user_account' => 99999991,
+        ]);
+
+        Listing::factory(20)->create();
     }
 }

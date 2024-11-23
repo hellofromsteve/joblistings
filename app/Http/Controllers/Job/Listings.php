@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Job;
 
 use App\Http\Controllers\Controller;
+use App\JobCategories;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -14,7 +16,10 @@ class Listings extends Controller
      */
     public function index()
     {
-        return Inertia('Jobs/View');
+        $listings = Listing::all();
+        return Inertia('Guest/Jobs', [
+            'listings' => $listings
+        ]);
     }
 
     /**
@@ -26,7 +31,7 @@ class Listings extends Controller
             return redirect()->route('candidate.dashboard')->with('message', 'You Must Be An Employer To Post A Job! Apply At Settings');
         } else {
 
-            return Inertia('Jobs/Store');
+            return Inertia('Employer/Jobs/Create');
         }
     }
 
@@ -35,7 +40,19 @@ class Listings extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $fields = $request->validate([
+            'job_title' => 'required|string|max:255',
+            'gender' => 'required|string|in:Male,Female,Both|max:255',
+            'job_cat' => 'required|string|max:255',
+            'salary' => 'required|string|max:255',
+            'language' => 'required|string|max:255',
+            'qualification' => 'required|string|max:255',
+            'job_desc' => 'required|string',
+        ]);
+
+        $request->user()->listings()->create($fields);
+        dd('Clicked');
     }
 
     /**

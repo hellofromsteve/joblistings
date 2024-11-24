@@ -17,6 +17,8 @@ class Listing extends Model
         'qualification',
         'salary',
         'language',
+        'region',
+        'city',
     ];
 
 

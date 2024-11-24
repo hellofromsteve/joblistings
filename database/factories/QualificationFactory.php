@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\JobCategory>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Qualification>
  */
-class JobCategoryFactory extends Factory
+class QualificationFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class JobCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            // 'name' => 'IT Service',
-
+            //
         ];
     }
 }

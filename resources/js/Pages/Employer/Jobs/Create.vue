@@ -1,19 +1,27 @@
 <script setup>
-import SocialInfo from "../../Candidate/Sections/SocialInfo.vue";
-import AddtionalInfo from "../../Candidate/Sections/AddtionalInfo.vue";
-import BasicInfo from "../../Candidate/Sections/BasicInfo.vue";
 import { useForm } from "@inertiajs/vue3";
+
+
+defineProps({
+    job_categories: Object,
+    qualifications: Object,
+    regions: Object
+})
 
 
 const form = useForm({
     job_title: '',
     job_desc: '',
-    gender: '',
+    gender: 'Either',
     job_cat: '',
+    city: '',
+    region: '',
     salary: '',
-    language: '',
+    language: 'English',
     qualification: '',
 })
+
+
 
 const submit = () => {
     form.post(route('job.store'));
@@ -24,7 +32,7 @@ const submit = () => {
 
 <template>
 
-
+    {{ console.log(job_categories) }}
 
     <Head title="Candidate Profile |"></Head>
 
@@ -66,27 +74,74 @@ const submit = () => {
 
                         <div class="col-xl-6 col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label>Gender (Male / Female / Both)</label>
-                                <input v-model="form.gender" type="text" class="form-control">
-                                <p class="text-danger">{{ form.errors.gender }}</p>
+                                <label>Gender Prefered</label>
+                                <div>
+                                    <select v-model="form.gender" name="gender">
+                                        <option value="">Choose Prefered Gender</option>
+                                        <option value="Either">Either</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Male">Male</option>
+
+                                    </select>
+                                </div>
+                                <p class="text-danger">{{ form.errors.qualification }}</p>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <div v-if="Object.keys(regions).length" class="form-group">
+                                <label>Region</label>
+                                <div>
+                                    <select v-model="form.region" name="region">
+                                        <option value=''>Choose Region</option>
+                                        <option v-for="region in regions" :key="region.id" :value="region.name">
+                                            {{ region.name }}</option>
+
+                                    </select>
+                                </div>
+                                <p class="text-danger">{{ form.errors.region }}</p>
                             </div>
                         </div>
 
                         <div class="col-xl-6 col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label>Job Category(Software, Hospitality, Marketing)</label>
-                                <input v-model="form.job_cat" type="text" class="form-control">
+                                <label>City(Accra/ Cape Coast/ Sunyani)</label>
+                                <input v-model="form.city" type="text" class="form-control">
+                                <p class="text-danger">{{ form.errors.city }}</p>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <div v-if="Object.keys(job_categories).length" class="form-group">
+                                <label>Job Category</label>
+                                <div>
+                                    <select v-model="form.job_cat" name="job_cat">
+                                        <option value=''>Choose Job Category</option>
+                                        <option v-for="jobs in job_categories" :key="jobs.id" :value="jobs.name">
+                                            {{ jobs.name }}</option>
+
+                                    </select>
+                                </div>
                                 <p class="text-danger">{{ form.errors.job_cat }}</p>
                             </div>
                         </div>
 
                         <div class="col-xl-6 col-lg-6 col-md-12">
-                            <div class="form-group">
-                                <label>Qualification (SHS / Degree / Masters...)</label>
-                                <input v-model="form.qualification" type="text" class="form-control">
+                            <div v-if="Object.keys(qualifications).length" class="form-group">
+                                <label>Qualification Required</label>
+                                <div>
+                                    <select v-model="form.qualification" name="qualification">
+                                        <option value=''>Choose Job Qualification</option>
+                                        <option v-for="q in qualifications" :key="q.id" :value="q.name">
+                                            {{ q.name }}</option>
+
+                                    </select>
+                                </div>
                                 <p class="text-danger">{{ form.errors.qualification }}</p>
                             </div>
                         </div>
+
+
                         <div class="col-xl-6 col-lg-6 col-md-12">
                             <div class="form-group">
                                 <label>Salary Range (1,500 - 2,000)</label>

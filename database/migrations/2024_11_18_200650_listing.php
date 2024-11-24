@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('gender');
             $table->string('job_cat');
             $table->string('qualification');
+            $table->string('city');
+            $table->string('region');
             $table->string('salary');
             $table->string('language');
             $table->longText('job_desc');

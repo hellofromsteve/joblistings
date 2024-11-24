@@ -25,10 +25,12 @@ class ListingFactory extends Factory
 
             'user_id' => fake()->randomElement([6, 7]),
             'job_title' => fake()->sentence(3),
-            'gender' => fake()->randomElement(['Male', 'Female', 'Both']),
-            'job_cat' => fake()->randomElement(['It Service', 'Web Dev', 'Customer Service']),
-            'qualification' => fake()->randomElement(['Degree', 'SHS', 'PhD', 'JHS']),
+            'gender' => fake()->randomElement(['Male', 'Female', 'Either']),
+            'job_cat' => fake()->randomElement(['It Service', 'Education', 'Customer Service', 'Sales', 'Other']),
+            'qualification' => fake()->randomElement(['Degree', 'Wassce', 'JHS']),
+            'region' => fake()->randomElement(['Eastern', 'Greater Accra', 'Bono', 'Oti', 'Savanna', 'Ahafo']),
             'salary' => fake()->numberBetween(10000, 90000),
+            'city' => fake()->randomElement(['Tamale', 'ho', 'Kasoa', 'Kumasi', 'Madina', 'Takoradi']),
             'language' => fake()->randomElement(['English', 'Spanish']),
             'job_desc' => fake()->paragraph(15),
             'job_status' => 1

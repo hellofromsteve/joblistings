@@ -3,28 +3,36 @@ import { useForm } from "@inertiajs/vue3";
 
 
 defineProps({
-    job_categories: Object,
-    qualifications: Object,
-    regions: Object
+    cats: Object
 })
 
 
 const form = useForm({
     job_title: '',
     job_desc: '',
-    gender: 'Either',
-    job_cat: '',
+    gender: null,
+    job_cat: null,
     city: '',
-    region: '',
+    region: null,
     salary: '',
     language: 'English',
-    qualification: '',
+    qualification: null,
 })
 
 
 
 const submit = () => {
-    form.post(route('job.store'));
+    form.post(route('job.store'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            Swal.fire({
+                title: 'Action Successful!',
+                text: 'Job Listing Added Successfuly',
+                icon: 'success',
+                confirmButtonText: 'Okay'
+            })
+        }
+    });
 }
 
 </script>
@@ -32,9 +40,9 @@ const submit = () => {
 
 <template>
 
-    {{ console.log(job_categories) }}
+    {{ console.log(cats) }}
 
-    <Head title="Candidate Profile |"></Head>
+    <Head title="Employer - Post A Job |"></Head>
 
     <div class="dashboard-content">
         <div class="dashboard-tlbar d-block mb-4">
@@ -76,50 +84,67 @@ const submit = () => {
                             <div class="form-group">
                                 <label>Gender Prefered</label>
                                 <div>
-                                    <select v-model="form.gender" name="gender">
-                                        <option value="">Choose Prefered Gender</option>
+                                    <select class="form-select" v-model="form.gender" id="gender" name="gender">
+
+                                        <option value="null" disabled>Choose Option</option>
                                         <option value="Either">Either</option>
                                         <option value="Female">Female</option>
                                         <option value="Male">Male</option>
 
                                     </select>
                                 </div>
-                                <p class="text-danger">{{ form.errors.qualification }}</p>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-6 col-lg-6 col-md-12">
-                            <div v-if="Object.keys(regions).length" class="form-group">
-                                <label>Region</label>
-                                <div>
-                                    <select v-model="form.region" name="region">
-                                        <option value=''>Choose Region</option>
-                                        <option v-for="region in regions" :key="region.id" :value="region.name">
-                                            {{ region.name }}</option>
-
-                                    </select>
-                                </div>
-                                <p class="text-danger">{{ form.errors.region }}</p>
+                                <p class="text-danger">{{ form.errors.gender }}</p>
                             </div>
                         </div>
 
                         <div class="col-xl-6 col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label>City(Accra/ Cape Coast/ Sunyani)</label>
+                                <label>Choose Region</label>
+                                <div>
+                                    <select class="form-select" name="region" id="region" v-model="form.region"
+                                        required>
+                                        <option value="null" disabled>Choose Region</option>
+                                        <option value="Greater-Accra">Greater Accra</option>
+                                        <option value="Ashanti">Ashanti</option>
+                                        <option value="Central">Central</option>
+                                        <option value="Eastern">Eastern</option>
+                                        <option value="Western">Western</option>
+                                        <option value="Western-North">Western North</option>
+                                        <option value="Volta">Volta</option>
+                                        <option value="Oti">Oti</option>
+                                        <option value="Northern">Northern</option>
+                                        <option value="Savannah">Savannah</option>
+                                        <option value="North-East">North East</option>
+                                        <option value="Upper-East">Upper East</option>
+                                        <option value="Upper-West">Upper West</option>
+                                        <option value="Bono">Bono</option>
+                                        <option value="Bono-East">Bono East</option>
+                                        <option value="Ahafo">Ahafo</option>
+                                    </select>
+
+                                </div>
+                                <p class="text-danger">{{ form.errors.region }}</p>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xl-6 col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label>Job Is In Which City(Accra/ Cape Coast/ Sunyani)</label>
                                 <input v-model="form.city" type="text" class="form-control">
                                 <p class="text-danger">{{ form.errors.city }}</p>
                             </div>
                         </div>
 
-                        <div class="col-xl-6 col-lg-6 col-md-12">
-                            <div v-if="Object.keys(job_categories).length" class="form-group">
-                                <label>Job Category</label>
+                        <div v-if="cats.length" class="col-xl-6 col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="job_cat">Choose Job Category</label>
                                 <div>
-                                    <select v-model="form.job_cat" name="job_cat">
-                                        <option value=''>Choose Job Category</option>
-                                        <option v-for="jobs in job_categories" :key="jobs.id" :value="jobs.name">
-                                            {{ jobs.name }}</option>
-
+                                    <select class="form-select" v-model="form.job_cat" name="job_cat" id="job_cat"
+                                        required>
+                                        <option value="null" disabled>Choose Options</option>
+                                        <option v-for="c in cats" :key="c.id" :value="c.cat_name">{{ c.cat_name }}
+                                        </option>
                                     </select>
                                 </div>
                                 <p class="text-danger">{{ form.errors.job_cat }}</p>
@@ -127,15 +152,18 @@ const submit = () => {
                         </div>
 
                         <div class="col-xl-6 col-lg-6 col-md-12">
-                            <div v-if="Object.keys(qualifications).length" class="form-group">
-                                <label>Qualification Required</label>
+                            <div class="form-group">
+                                <label>Choose Job Qualification</label>
                                 <div>
-                                    <select v-model="form.qualification" name="qualification">
-                                        <option value=''>Choose Job Qualification</option>
-                                        <option v-for="q in qualifications" :key="q.id" :value="q.name">
-                                            {{ q.name }}</option>
+                                    <select class="form-select" v-model="form.qualification" name="qualification"
+                                        id="qualification" required>
+                                        <option value="null" disabled>Choose Options</option>
+                                        <option value="Wassce">Wassce / Senior High School</option>
+                                        <option value="Degree">Degree / Diploma / Hnd</option>
+                                        <option value="PHD">PHD</option>
 
                                     </select>
+
                                 </div>
                                 <p class="text-danger">{{ form.errors.qualification }}</p>
                             </div>
@@ -144,7 +172,7 @@ const submit = () => {
 
                         <div class="col-xl-6 col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label>Salary Range (1,500 - 2,000)</label>
+                                <label>Salary Per Month (1,500 - 2,000)</label>
                                 <input v-model="form.salary" type="text" class="form-control">
                                 <p class="text-danger">{{ form.errors.salary }}</p>
                             </div>

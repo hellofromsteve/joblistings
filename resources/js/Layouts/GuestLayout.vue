@@ -61,7 +61,7 @@
 
 
 
-                        <ul class="nav-menu nav-menu-social align-to-right">
+                        <ul v-if="!$page.props.auth.user" class="nav-menu nav-menu-social align-to-right">
 
                             <li>
                                 <Link :href="route('login')"><i class="fas fa-sign-in-alt me-2"></i>Sign In</Link>

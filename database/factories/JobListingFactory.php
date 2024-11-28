@@ -2,16 +2,16 @@
 
 namespace Database\Factories;
 
-use App\Models\Listing;
+use App\Models\JobListing;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Listing>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\JobListing>
  */
-class ListingFactory extends Factory
+class JobListingFactory extends Factory
 {
 
-    protected $model = Listing::class;
+    protected $model = JobListing::class;
     /**
      * Define the model's default state.
      *
@@ -19,8 +19,6 @@ class ListingFactory extends Factory
      */
     public function definition(): array
     {
-
-
         return [
 
             'user_id' => fake()->randomElement([6, 7]),

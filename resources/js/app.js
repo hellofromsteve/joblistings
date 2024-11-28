@@ -7,6 +7,7 @@ import GuestLayout from './Layouts/GuestLayout.vue';
 import CandidateLayout from "./Layouts/CandidateLayout.vue";
 import FlashMessage from "./Components/FlashMessage.vue";
 import EmployerLayout from "./Layouts/EmployerLayout.vue";
+import AdminLayout from "./Layouts/AdminLayout.vue";
 
 createInertiaApp({
   title: (title) => ` ${title} Turndale Hire`,
@@ -15,8 +16,6 @@ createInertiaApp({
     let page = pages[`./Pages/${name}.vue`]
     if (name.startsWith('Admin/')) {
       page.default.layout = AdminLayout;
-    } else if (name.startsWith('Guest/')) {
-      page.default.layout = GuestLayout;
     } else if (name.startsWith('Candidate/')) {
       page.default.layout = CandidateLayout;
     } else if (name.startsWith('Employer/')) {

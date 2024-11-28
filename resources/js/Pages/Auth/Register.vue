@@ -5,6 +5,7 @@ import { useForm } from '@inertiajs/vue3'
 
 const form = useForm({
 	full_name: "",
+	account_type: null,
 	email: "",
 	phone: "",
 	password: "",
@@ -85,7 +86,28 @@ const submit = () => {
 														</div>
 													</div>
 
+
+
+
 												</div>
+
+
+
+												<div class="form-floating mb-4">
+													<select class="form-select" v-model="form.account_type"
+														name="account_type">
+														<option value="null">Choose Account Type</option>
+														<option value="candidate">Candidate</option>
+														<option value="employer">Employer</option>
+
+													</select>
+												</div>
+												<p class="text-danger">
+													{{ form.errors.account_type }}
+												</p>
+
+
+
 
 												<div class="form-floating mb-4">
 													<input v-model="form.email" type="email" class="form-control"

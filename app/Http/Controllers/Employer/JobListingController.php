@@ -1,49 +1,41 @@
 <?php
 
-namespace App\Http\Controllers\Job;
+namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
-use App\JobCategories;
-use App\Models\JobCategory;
-use App\Models\Listing;
-use App\Models\Qualification;
-use App\Models\Regions;
+use App\Models\JobCategories;
+use App\Models\JobListing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
-class Listings extends Controller
+class JobListingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $listings = Listing::all();
-        return Inertia('Guest/Jobs', [
-            'listings' => $listings
+
+        $user = Auth::user();
+
+        $jobs = JobListing::where('user_id', auth()->id())->get();
+        $jobCount = $jobs->count();
+        return Inertia::render('Employer/Job/Index-Job', [
+            'jobCount' => $jobCount,
+            'jobs' => $jobs,
         ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
-        if ($request->user()->account_type !== 'employer') {
-            return redirect()->route('candidate.dashboard')->with('message', 'You Must Be An Employer To Post A Job! Apply At Settings');
-        } else {
-
-            $job_categories = JobCategory::all();
-            $qualifications = Qualification::all();
-            $regions = Regions::all();
-
-            return Inertia('Employer/Jobs/Create', [
-                'job_categories' => $job_categories,
-                'qualifications' => $qualifications,
-                'regions' => $regions,
-            ]);
-        }
+        $cats = JobCategories::latest()->get();
+        return Inertia::render('Employer/Job/Create-Job', [
+            'cats' => $cats
+        ]);
     }
 
     /**
@@ -51,12 +43,9 @@ class Listings extends Controller
      */
     public function store(Request $request)
     {
-
-
-
         $fields = $request->validate([
-            'job_title' => 'required|string|max:255',
-            'gender' => 'required|string|in:Male,Female,Both|max:255',
+            'job_title' => 'required|string|max:35',
+            'gender' => 'required|string|in:Male,Female,Either|max:255',
             'job_cat' => 'required|string|max:255',
             'salary' => 'required|numeric',
             'region' => 'required|string|max:255',
@@ -66,9 +55,11 @@ class Listings extends Controller
             'job_desc' => 'required|string',
         ]);
 
-        dd($fields);
+        // dd($fields);
 
-        $request->user()->listings()->create($fields);
+        $request->user()->jobListings()->create($fields);
+
+        return redirect()->route('employer.job-listings.index');
     }
 
     /**

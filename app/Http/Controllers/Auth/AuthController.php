@@ -29,7 +29,8 @@ class AuthController extends Controller
 
         $validated =  $request->validate([
             'full_name' => 'required|string|max:255',
-            'email' => 'required|string|unique:users,email',
+            'email' => 'required|email|unique:users,email',
+            'account_type' => 'required|string|in:candidate,employer',
             'phone' => 'required|digits:3',
             'password' => 'required|min:3|confirmed',
             'password_confirmation' => 'required|same:password'
@@ -42,6 +43,7 @@ class AuthController extends Controller
         $user = User::create([
             'full_name' => $validated['full_name'],
             'email' => $validated['email'],
+            'account_type' => $validated['account_type'],
             'phone' => $validated['phone'],
             'password' => Hash::make($validated['password']),
             'user_account' => $accountNumber,

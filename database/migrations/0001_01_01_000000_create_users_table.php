@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('user_account')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('account_type')->default('candidate');
+            $table->string('account_type');
             $table->string('language')->nullable();
             $table->string('address')->nullable();
             $table->string('region')->nullable();

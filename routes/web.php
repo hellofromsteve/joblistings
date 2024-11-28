@@ -1,14 +1,27 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminHome;
 use App\Http\Controllers\BasicController;
 use App\Http\Controllers\Candidate\ProfileController;
 use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\Employer\Dashboard;
+use App\Http\Controllers\Employer\JobListingController;
+use App\Http\Controllers\Employer\Jobs;
+use App\Http\Controllers\Guest\PageHandlerController;
 use App\Http\Controllers\Job\Listings;
 use Illuminate\Support\Facades\Route;
 
 
+// Admin Routes
+
+Route::get('/admin/dashboard', [AdminHome::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/job/categories', [AdminHome::class, 'categories'])->name('admin.categories');
+Route::post('/admin/job/categories', [AdminHome::class, 'addCategories'])->name('admin.categories');
+Route::get('/admin/users', [AdminHome::class, 'index'])->name('admin.users');
+
+
 // Guest Routes
-Route::inertia('/', 'Guest/Home')->name('home');
+Route::get('/', [PageHandlerController::class, 'homeVue'])->name('home');
 Route::inertia('/about', 'Guest/About')->name('about');
 Route::inertia('/jobs', 'Jobs/View')->name('jobs.index');
 Route::get('/job/create', [Listings::class, 'create'])->middleware(['auth', 'verified'])->name('job.create');
@@ -32,8 +45,11 @@ Route::middleware(['auth', 'verified', 'candidate'])->prefix('candidate')->group
 
 // Employer Routes
 Route::middleware(['auth', 'verified', 'employer'])->prefix('employer')->group(function () {
-    Route::get('/dashboard', fn() => inertia('Employer/Dashboard'))->name('employer.dashboard');
-    Route::post('job/create', [Listings::class, 'store'])->name('job.store');
+    Route::get('/dashboard', [Dashboard::class, 'index'])->name('employer.dashboard');
+});
+
+Route::middleware(['auth'])->prefix('employer')->name('employer.')->group(function () {
+    Route::resource('job-listings', JobListingController::class);
 });
 
 

@@ -59,7 +59,8 @@ const submit = () => {
                         <ul class="nav-menu nav-menu-social align-to-right">
 
                             <li class="list-buttons ms-2">
-                                <Link :href="route('jobs.create')"><i class="fa-solid fa-cloud-arrow-up me-2"></i>Post A
+                                <Link :href="route('job.create')">
+                                <i class="fa-solid fa-cloud-arrow-up me-2"></i>Post A
                                 Job
                                 </Link>
                             </li>
@@ -107,7 +108,7 @@ const submit = () => {
 
 
                             <div class="px-3  mt-2 block justify-content-center">
-                                <form @submit.prevent="submit">
+                                <form @submit.prevent="submit" style="margin-top: 100px;">
 
                                     <button class="btn btn-block btn-danger btn-md mt-8"> <i
                                             class="text-white fa-solid fa-power-off me-2"></i>Log

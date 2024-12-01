@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
-use App\Models\JobCategories;
+use App\Models\JobCategory;
 use App\Models\JobListing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,16 +14,30 @@ class JobListingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $user = Auth::user();
 
-        $jobs = JobListing::where('user_id', auth()->id())->get();
-        $jobCount = $jobs->count();
+        $search = $request->input('search');
+
+
+        $jobsQuery = JobListing::latest()->where('user_id', $user->id);
+
+        if ($search) {
+            $jobsQuery->where('job_title', 'like', '%' . $search . '%');
+        }
+
+
+        $jobs = $jobsQuery->paginate(15)->withQueryString();
+
+
+        $jobCount = JobListing::where('user_id', $user->id)->count();
+
         return Inertia::render('Employer/Job/Index-Job', [
             'jobCount' => $jobCount,
             'jobs' => $jobs,
+            'searchTerm' => $request->search,
         ]);
     }
 
@@ -32,10 +46,8 @@ class JobListingController extends Controller
      */
     public function create()
     {
-        $cats = JobCategories::latest()->get();
-        return Inertia::render('Employer/Job/Create-Job', [
-            'cats' => $cats
-        ]);
+
+        return Inertia::render('Employer/Job/Create-Job', []);
     }
 
     /**
@@ -46,7 +58,7 @@ class JobListingController extends Controller
         $fields = $request->validate([
             'job_title' => 'required|string|max:35',
             'gender' => 'required|string|in:Male,Female,Either|max:255',
-            'job_cat' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'salary' => 'required|numeric',
             'region' => 'required|string|max:255',
             'city' => 'required|string|max:255',

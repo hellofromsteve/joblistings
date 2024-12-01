@@ -6,9 +6,8 @@ use App\Http\Controllers\Candidate\ProfileController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\Employer\Dashboard;
 use App\Http\Controllers\Employer\JobListingController;
-use App\Http\Controllers\Employer\Jobs;
 use App\Http\Controllers\Guest\PageHandlerController;
-use App\Http\Controllers\Job\Listings;
+use App\Http\Controllers\Guest\ShowJobsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,16 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin/dashboard', [AdminHome::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/job/categories', [AdminHome::class, 'categories'])->name('admin.categories');
-Route::post('/admin/job/categories', [AdminHome::class, 'addCategories'])->name('admin.categories');
+Route::post('/admin/job/categories', [AdminHome::class, 'addCategories']);
 Route::get('/admin/users', [AdminHome::class, 'index'])->name('admin.users');
 
 
 // Guest Routes
 Route::get('/', [PageHandlerController::class, 'homeVue'])->name('home');
 Route::inertia('/about', 'Guest/About')->name('about');
-Route::inertia('/jobs', 'Jobs/View')->name('jobs.index');
-Route::get('/job/create', [Listings::class, 'create'])->middleware(['auth', 'verified'])->name('job.create');
-Route::get('/job/show', [Listings::class, 'index'])->name('job.view');
+Route::get('/guest/jobs', [ShowJobsController::class, 'index'])->name('guest.job-listings');
+Route::get('/guest/jobs/{job}', [ShowJobsController::class, 'showJob'])->name('guest.job-show');
 
 
 // Email Routes
@@ -48,7 +46,7 @@ Route::middleware(['auth', 'verified', 'employer'])->prefix('employer')->group(f
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('employer.dashboard');
 });
 
-Route::middleware(['auth'])->prefix('employer')->name('employer.')->group(function () {
+Route::middleware(['auth', 'verified', 'employer'])->prefix('employer')->name('employer.')->group(function () {
     Route::resource('job-listings', JobListingController::class);
 });
 

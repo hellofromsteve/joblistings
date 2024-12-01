@@ -15,7 +15,8 @@
 				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 pe-xl-4 pe-lg-3">
 					<h6
 						class="text-primary bg-light-primary py-2 px-3 rounded-5 fw-medium d-inline-flex align-items-center mb-3">
-						<span class="primary-2-bg w-5 h-05 me-2"></span>Get Hot & Trending Jobs</h6>
+						<span class="primary-2-bg w-5 h-05 me-2"></span>Get Hot & Trending Jobs
+					</h6>
 					<h1 class="mb-4">Remote Work Platform For Digital Team</h1>
 					<p class="fs-5">Getting a new job is never easy. Check what new jobs we have in store for you on Job
 						Stock.</p>
@@ -177,12 +178,13 @@
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 					<div class="card border py-4 px-4 rounded-4 mb-0">
 						<div class="ctrd-icons mb-3">
-							<i class="fa-solid fa-file-invoice text-primary fs-1"></i>
+							<i class="fa-solid fa-folder-plus text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a href="browse-jobs-grid.html">Accounting & Finance</a></h4>
-							<p class="mb-3">You can view all popular jobs according your future careers.</p>
-							<p class="text-primary fw-medium mb-0">122 Active Jobs</p>
+							<h4 class="fs-5"><a :href="route('guest.job-listings', { category: 'creative' })">Creative
+									Design</a></h4>
+
+							<p class="text-black fw-medium mb-0">122 Active Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -191,12 +193,13 @@
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 					<div class="card border py-4 px-4 rounded-4 mb-0">
 						<div class="ctrd-icons mb-3">
-							<i class="fa-solid fa-caravan text-primary fs-1"></i>
+							<i class="fa-solid fa-question text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a href="browse-jobs-grid.html">Automotive Jobs</a></h4>
-							<p class="mb-3">You can view all popular jobs according your future careers.</p>
-							<p class="text-primary fw-medium mb-0">85 Active Jobs</p>
+							<h4 class="fs-5"><a :href="route('guest.job-listings', { category: 'customer' })">Customer
+									Service </a></h4>
+
+							<p class="black fw-medium mb-0">85 Active Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -205,12 +208,13 @@
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 					<div class="card border py-4 px-4 rounded-4 mb-0">
 						<div class="ctrd-icons mb-3">
-							<i class="fa-solid fa-person-chalkboard text-primary fs-1"></i>
+							<i class="fa-solid fa-school text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a href="browse-jobs-grid.html">Business & Tech</a></h4>
-							<p class="mb-3">You can view all popular jobs according your future careers.</p>
-							<p class="text-primary fw-medium mb-0">25 Active Jobs</p>
+							<h4 class="fs-5"><a :href="route('guest.job-listings', { category: 'education' })">Education
+									& Training</a></h4>
+
+							<p class="text-pblack fw-medium mb-0">25 Active Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -219,12 +223,14 @@
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 					<div class="card border py-4 px-4 rounded-4 mb-0">
 						<div class="ctrd-icons mb-3">
-							<i class="fa-solid fa-user-graduate text-primary fs-1"></i>
+							<i class="fa-solid fa-screwdriver-wrench text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a href="browse-jobs-grid.html">Education Training</a></h4>
-							<p class="mb-3">You can view all popular jobs according your future careers.</p>
-							<p class="text-primary fw-medium mb-0">212 Active Jobs</p>
+							<h4 class="fs-5"><a
+									:href="route('guest.job-listings', { category: 'engineering' })">Engineering &
+									Const.</a></h4>
+
+							<p class="text-pblack fw-medium mb-0">212 Active Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -234,12 +240,13 @@
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 					<div class="card border py-4 px-4 rounded-4 mb-0">
 						<div class="ctrd-icons mb-3">
-							<i class="fa-solid fa-briefcase-medical text-primary fs-1"></i>
+							<i class="fa-solid fa-filter-circle-dollar text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a href="browse-jobs-grid.html">Healthcare</a></h4>
-							<p class="mb-3">You can view all popular jobs according your future careers.</p>
-							<p class="text-primary fw-medium mb-0">90 Active Jobs</p>
+							<h4 class="fs-5"><a :href="route('guest.job-listings', { category: 'finance' })">Finance &
+									Accounting</a></h4>
+
+							<p class="text-pblack fw-medium mb-0">90 Active Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -248,12 +255,13 @@
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 					<div class="card border py-4 px-4 rounded-4 mb-0">
 						<div class="ctrd-icons mb-3">
-							<i class="fa-solid fa-burger text-primary fs-1"></i>
+							<i class="fa-solid fa-notes-medical text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a href="browse-jobs-grid.html">Restaurant & Food</a></h4>
-							<p class="mb-3">You can view all popular jobs according your future careers.</p>
-							<p class="text-primary fw-medium mb-0">65 Active Jobs</p>
+							<h4 class="fs-5"><a
+									:href="route('guest.job-listings', { category: 'healthcare' })">HealthCare</a></h4>
+
+							<p class="text-pblack fw-medium mb-0">65 Active Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -262,12 +270,13 @@
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 					<div class="card border py-4 px-4 rounded-4 mb-0">
 						<div class="ctrd-icons mb-3">
-							<i class="fa-solid fa-jet-fighter text-primary fs-1"></i>
+							<i class="fa-solid fa-shop text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a href="browse-jobs-grid.html">Transportation</a></h4>
-							<p class="mb-3">You can view all popular jobs according your future careers.</p>
-							<p class="text-primary fw-medium mb-0">160 Active Jobs</p>
+							<h4 class="fs-5"><a :href="route('guest.job-listings', { category: 'sales' })">Sales &
+									Marketing</a></h4>
+
+							<p class="text-pblack fw-medium mb-0">160 Active Jobs</p>
 						</div>
 					</div>
 				</div>
@@ -276,12 +285,13 @@
 				<div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
 					<div class="card border py-4 px-4 rounded-4 mb-0">
 						<div class="ctrd-icons mb-3">
-							<i class="fa-solid fa-mobile-screen-button text-primary fs-1"></i>
+							<i class="fa-solid fa-computer text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a href="browse-jobs-grid.html">Telecommunications</a></h4>
-							<p class="mb-3">You can view all popular jobs according your future careers.</p>
-							<p class="text-primary fw-medium mb-0">80 Active Jobs</p>
+							<h4 class="fs-5"><a
+									:href="route('guest.job-listings', { category: 'technology' })">Technology & I.T</a>
+							</h4>
+							<p class="text-black fw-medium mb-0">80 Active Jobs</p>
 						</div>
 					</div>
 				</div>

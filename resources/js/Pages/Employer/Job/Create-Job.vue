@@ -1,9 +1,10 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
+import BreadCrumb from "../../../Components/BreadCrumb.vue";
 
 
 defineProps({
-    cats: Object
+
 })
 
 
@@ -11,7 +12,7 @@ const form = useForm({
     job_title: '',
     job_desc: '',
     gender: null,
-    job_cat: null,
+    category: null,
     city: '',
     region: null,
     salary: '',
@@ -22,7 +23,7 @@ const form = useForm({
 
 
 const submit = () => {
-    form.post(route('job.store'), {
+    form.post(route('employer.job-listings.store'), {
         preserveScroll: true,
         onSuccess: () => {
             Swal.fire({
@@ -40,25 +41,12 @@ const submit = () => {
 
 <template>
 
-    {{ console.log(cats) }}
-
     <Head title="Employer - Post A Job |"></Head>
 
     <div class="dashboard-content">
-        <div class="dashboard-tlbar d-block mb-4">
-            <div class="row">
-                <div class="colxl-12 col-lg-12 col-md-12">
-                    <h1 class="mb-1 fs-3 fw-medium">Post Jobs</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item text-muted"><a href="#">Employer</a></li>
-                            <li class="breadcrumb-item text-muted"><a href="#">Dashboard</a></li>
-                            <li class="breadcrumb-item"><a href="#" class="text-primary">Post Jobs</a></li>
-                        </ol>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        <BreadCrumb name="Post New Jobs" accountType="Employer" :dashboardUrl="route('employer.dashboard')"
+            currentPage="Post New Job" />
+
 
 
 
@@ -138,16 +126,22 @@ const submit = () => {
 
                         <div v-if="cats.length" class="col-xl-6 col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label for="job_cat">Choose Job Category</label>
+                                <label for="category">Choose Job Category</label>
                                 <div>
-                                    <select class="form-select" v-model="form.job_cat" name="job_cat" id="job_cat"
+                                    <select class="form-select" v-model="form.category" name="category" id="category"
                                         required>
-                                        <option value="null" disabled>Choose Options</option>
-                                        <option v-for="c in cats" :key="c.id" :value="c.cat_name">{{ c.cat_name }}
-                                        </option>
+                                        <option value="null" disabled>Choose Job Category</option>
+                                        <option value="creative">Creative & Design</option>
+                                        <option value="customer">Customer Service & Support</option>
+                                        <option value="education">Education & Training</option>
+                                        <option value="engineering">Engineering & Construction</option>
+                                        <option value="finance">Finance & Accounting</option>
+                                        <option value="healthcare">Health Care</option>
+                                        <option value="sales">Sales & Marketing</option>
+                                        <option value="technology">Technology and IT</option>
                                     </select>
                                 </div>
-                                <p class="text-danger">{{ form.errors.job_cat }}</p>
+                                <p class="text-danger">{{ form.errors.category }}</p>
                             </div>
                         </div>
 

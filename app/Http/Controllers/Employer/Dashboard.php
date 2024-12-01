@@ -8,6 +8,7 @@ use App\Models\JobListing;
 use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class Dashboard extends Controller
@@ -16,7 +17,10 @@ class Dashboard extends Controller
     {
 
 
-        $jobs = JobListing::where('user_id', auth()->id())->count();
+
+        $user = Auth::user();
+
+        $jobs = JobListing::where('user_id', $user->id)->count();
 
 
         return Inertia::render('Employer/Dashboard', [

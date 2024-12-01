@@ -1,12 +1,51 @@
 <script setup>
 
-import JobCard from "../../Components/JobCard.vue";
-import PaginationLinks from "../../Components/PaginationLinks.vue";
-import TestPages from "../../Components/TestPages.vue";
+import { router, useForm } from "@inertiajs/vue3";
+import JobCard from "../../../Components/JobCard.vue";
+import PaginationLinks from "../../../Components/PaginationLinks.vue";
 
-defineProps({
+
+
+const props = defineProps({
+
+    paginateBy: "",
+    titleSearched: String,
+    categorySelected: String,
+    regionSelected: String,
+
+
     jobs: Object,
-})
+
+
+});
+
+
+const form = useForm({
+
+    paginateSelector: props.paginateBy || 15,
+    title: props.titleSearched,
+    category: props.categorySelected,
+    region: props.regionSelected,
+
+});
+
+
+
+const submitSearch = () => {
+
+    router.get(route('guest.job-listings'),
+        {
+            title: form.title, category: form.category, region: form.region, paginateSelector: form.paginateSelector,
+        })
+}
+
+
+
+const clearFilter = () => {
+    form.reset();
+    router.get(route('guest.job-listings'));
+}
+
 
 </script>
 <template>
@@ -24,13 +63,15 @@ defineProps({
                     <div class="full-search-2">
                         <div class="hero-search-content search-shadow">
 
+
+
                             <div class="row classic-search-box m-0 gx-2">
 
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
-                                            <input type="text" class="form-control"
-                                                placeholder="Skills, Designations, Keyword">
+                                            <input type="search" class="form-control" placeholder="Job Title..."
+                                                v-model="form.title" @change="submitSearch">
                                             <i class="fa-solid fa-magnifying-glass text-primary"></i>
                                         </div>
                                     </div>
@@ -38,34 +79,47 @@ defineProps({
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group briod">
                                         <div class="input-with-icon">
-                                            <select class="form-control">
-                                                <option value="1">Job Category</option>
-                                                <option value="2">Accounting & Finance</option>
-                                                <option value="3">Automotive Jobs</option>
-                                                <option value="4">Business Services</option>
-                                                <option value="5">Education Training</option>
-                                                <option value="6">Software Application</option>
-                                                <option value="7">Restaurant & Food</option>
-                                                <option value="8">Healthcare</option>
-                                                <option value="9">Transportation</option>
-                                                <option value="10">Telecommunications</option>
+
+                                            <select @change="submitSearch" class="form-control" v-model="form.category"
+                                                name="job_cat" id="category" required>
+                                                <option value="null" disabled>Choose Job Category</option>
+                                                <option value="creative">Creative & Design</option>
+                                                <option value="customer">Customer Service & Support</option>
+                                                <option value="education">Education & Training</option>
+                                                <option value="engineering">Engineering & Construction</option>
+                                                <option value="finance">Finance & Accounting</option>
+                                                <option value="healthcare">Health Care</option>
+                                                <option value="sales">Sales & Marketing</option>
+                                                <option value="technology">Technology and IT</option>
                                             </select>
                                             <i class="fa-solid fa-briefcase text-primary"></i>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <div class="input-with-icon">
-                                            <select class="form-control">
-                                                <option value="1">Select City</option>
-                                                <option value="2">Huntingdon</option>
-                                                <option value="3">Fenland</option>
-                                                <option value="4">United State</option>
-                                                <option value="5">United Kingdom</option>
-                                                <option value="6">California</option>
-                                                <option value="7">Canada</option>
-                                                <option value="8">New York</option>
+                                            <select v-model="form.region" class="form-control" id="region"
+                                                @change="submitSearch">
+
+                                                <option value="null" disabled>Choose Region</option>
+                                                <option value="Greater-Accra">Greater Accra</option>
+                                                <option value="Ashanti">Ashanti</option>
+                                                <option value="Central">Central</option>
+                                                <option value="Eastern">Eastern</option>
+                                                <option value="Western">Western</option>
+                                                <option value="Western-North">Western North</option>
+                                                <option value="Volta">Volta</option>
+                                                <option value="Oti">Oti</option>
+                                                <option value="Northern">Northern</option>
+                                                <option value="Savannah">Savannah</option>
+                                                <option value="North-East">North East</option>
+                                                <option value="Upper-East">Upper East</option>
+                                                <option value="Upper-West">Upper West</option>
+                                                <option value="Bono">Bono</option>
+                                                <option value="Bono-East">Bono East</option>
+                                                <option value="Ahafo">Ahafo</option>
                                             </select>
                                             <i class="fa-solid fa-location-crosshairs text-primary"></i>
                                         </div>
@@ -73,18 +127,22 @@ defineProps({
                                 </div>
                                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                     <div class="fliox-search-wiop">
+                                        <div class="form-group px-2">
+                                            <button @click="submitSearch" type="submit"
+                                                class="btn btn-primary full-width">Search</button>
+                                        </div>
                                         <div class="form-group me-2">
-                                            <a href="JavaScript:Void(0);" data-bs-toggle="modal"
-                                                data-bs-target="#filter" class="btn btn-filter-search"><i
-                                                    class="fa-solid fa-filter"></i>Filter</a>
+                                            <button @click="clearFilter" href="" class="btn btn-danger">Clear
+                                                Filter</button>
                                         </div>
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary full-width">Search</button>
-                                        </div>
+
                                     </div>
                                 </div>
 
                             </div>
+
+
+
 
                         </div>
                     </div>
@@ -104,8 +162,8 @@ defineProps({
 
 
                 <div v-if="!jobs.data || jobs.data.length === 0">
-                    <div class="d-flex justify-content-center align-items-center vh-100">
-                        <h3 class="text-center">No Jobs Found Yet</h3>
+                    <div class="d-flex justify-content-center align-items-center vh-35">
+                        <h3 class="text-center">No Jobs Found </h3>
                     </div>
                 </div>
 
@@ -116,26 +174,22 @@ defineProps({
                             <div class="item-shorting-box">
                                 <div class="item-shorting clearfix">
                                     <div class="left-column">
-                                        <h4 class="m-sm-0 mb-2"> Showing {{ jobs.from }} to {{ jobs.to }} Results</h4>
+                                        <h4 class="m-sm-0 mb-2"> Showing {{ jobs.from }} to {{ jobs.to }} Results Out of
+                                            {{ jobs.total }}</h4>
                                     </div>
 
 
                                 </div>
                                 <div class="item-shorting-box-right">
-                                    <div class="shorting-by me-2 small">
-                                        <select class="form-select">
-                                            <option value="0">Short by (Default)</option>
-                                            <option value="1">Short by (Featured)</option>
-                                            <option value="2">Short by (Urgent)</option>
-                                            <option value="3">Short by (Post Date)</option>
-                                        </select>
-                                    </div>
+
                                     <div class="shorting-by small">
-                                        <select class="form-select">
-                                            <option value="0">10 Per Page</option>
-                                            <option value="1">20 Per Page</option>
-                                            <option value="2">50 Per Page</option>
-                                            <option value="3">10 Per Page</option>
+                                        <select v-model="form.paginateSelector" @change="submitSearch"
+                                            class="form-select">
+                                            <option value=15>Show 15 Per Page</option>
+                                            <option value=30>Show 30 Per Page</option>
+                                            <option value=45>Show 45 Per Page</option>
+                                            <option value=60>Show 60 Per Page</option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -146,7 +200,7 @@ defineProps({
                     <div v-if="Object.keys(jobs.data).length" class="row justify-content-center gx-xl-3 gx-3 gy-4">
 
                         <!-- Single Item -->
-                        <div v-for="job in jobs.data" :key="job.id" class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div v-for="job in jobs.data" :key="job.id" class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                             <JobCard :job="job" />
                         </div>
 
@@ -158,34 +212,9 @@ defineProps({
 
 
                     <!-- Pagination -->
-                    <PaginationLinks :jobs="jobs" />
+                    <PaginationLinks :paginator="jobs" />
                     <!-- <TestPages :paginator="jobs" /> -->
 
-                    <!-- <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="JavaScript:Void(0);" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="JavaScript:Void(0);">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="JavaScript:Void(0);">2</a></li>
-                                    <li class="page-item active"><a class="page-link" href="JavaScript:Void(0);">3</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="JavaScript:Void(0);">4</a></li>
-                                    <li class="page-item"><a class="page-link" href="JavaScript:Void(0);">5</a></li>
-                                    <li class="page-item"><a class="page-link" href="JavaScript:Void(0);">6</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="JavaScript:Void(0);" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div> -->
 
                 </div>
 

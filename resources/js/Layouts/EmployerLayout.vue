@@ -38,12 +38,9 @@ const submit = () => {
                                 <Link :href="route('candidate.profile')">My Profile</Link>
                             </li>
 
-                            <li :class="{ active: $page.component === 'Employer/Index-Job' }">
+                            <li :class="{ active: $page.component === 'Employer/Job/Index-Job' }">
                                 <Link :href="route('employer.job-listings.index')">My Listed
                                 Jobs</Link>
-                            </li>
-                            <li :class="{ active: $page.component === 'Jobs/View' }">
-                                <a :href="route('job.view')" target="_blank" rel="noopener noreferrer">All Jobs</a>
                             </li>
 
 
@@ -89,7 +86,7 @@ const submit = () => {
                                     :href="route('candidate.dashboard')"><i class="fa-solid fa-gauge-high me-2"></i>My
                                     Dashboard</a></li>
 
-                            <li :class="{ active: $page.component === 'Employer/Index-Job' }"><a
+                            <li :class="{ active: $page.component === 'Employer/Job/Index-Job' }"><a
                                     :href="route('employer.job-listings.index')"><i
                                         class="fa-solid fa-file-pdf me-2"></i>My Jobs</a>
                             </li>

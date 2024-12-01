@@ -6,7 +6,7 @@ defineProps({
         required: true
     },
 
-    account_type: {
+    accountType: {
         type: String,
         required: true
     },
@@ -32,7 +32,7 @@ defineProps({
                 <h1 class="mb-1 fs-3 fw-medium">{{ name }}</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item text-muted"><a :href="dashboardUrl">{{ account_type }}
+                        <li class="breadcrumb-item text-muted"><a :href="dashboardUrl">{{ accountType }}
                                 Dashboard</a></li>
                         <li class="breadcrumb-item"><a class="text-primary">{{ currentPage }}</a></li>
                     </ol>

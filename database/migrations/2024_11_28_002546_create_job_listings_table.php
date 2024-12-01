@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete;
             $table->string('job_title');
             $table->string('gender');
-            $table->string('job_cat');
+            $table->string('category');
             $table->string('qualification');
             $table->string('city');
             $table->string('region');

@@ -20,14 +20,15 @@
         <div class="header header-transparent dark">
             <div class="container">
                 <nav id="navigation" class="navigation navigation-landscape">
+
                     <div class="nav-header">
                         <a class="nav-brand" href="#"><img src="/public/homeassets/img/logo.png" class="logo"
                                 alt="Logo"></a>
                         <div class="nav-toggle"></div>
                         <div class="mobile_nav">
-                            <ul>
+                            <ul v-if="!$page.props.auth.user">
                                 <li class="list-buttons">
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#login">
+                                    <a :href="route('login')">
                                         <i class="fas fa-sign-in-alt me-2"></i>Log In
                                     </a>
                                 </li>
@@ -39,8 +40,8 @@
                             <li :class="{ active: $page.component === 'Guest/Home' }">
                                 <Link :href="route('home')">Home</Link>
                             </li>
-                            <li :class="{ active: $page.component === 'Guest/Jobs' }">
-                                <Link :href="route('job.view')">All Jobs</Link>
+                            <li :class="{ active: $page.component === 'Guest/Job/Show' }">
+                                <Link :href="route('guest.job-listings')">All Jobs</Link>
                             </li>
 
                             <li :class="{ active: $page.component === 'Guest/About' }">

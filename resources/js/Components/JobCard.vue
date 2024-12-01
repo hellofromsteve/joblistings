@@ -13,15 +13,13 @@ defineProps({
     <div class="jbs-grid-layout style_2 border">
         <div class="jbs-grid-emp-head">
             <div class="jbs-grid-emp-content">
-                <div class="jbs-grid-emp-thumb jbs-verified"><a href="job-detail.html">
-                        <figure><img src="https://placehold.co/200x200" class="img-fluid" alt=""></figure>
-                    </a></div>
+
                 <div class="jbs-grid-job-caption">
                     <div class="jbs-job-employer-wrap"><span>{{ job.job_cat }}</span>
                     </div>
                     <div class="jbs-job-title-wrap">
-                        <h4><a href="job-detail.html" class="jbs-job-title">{{
-                            job.job_title.substring(0, 30) }}</a>
+                        <h4><a :href="route('guest.job-show', job.id)" class="jbs-job-title">{{
+                            job.job_title.substring(0, 25) }}</a>
                         </h4>
                     </div>
                 </div>
@@ -33,25 +31,26 @@ defineProps({
             <div class="jbs-info-ico-style">
                 <div class="jbs-single-y1 style-1"><span><i class="fa-solid fa-location-dot"></i></span>{{
                     job.region }}, {{ job.city }}</div>
-                <div class="jbs-single-y1 style-2"><span><i class="fa-solid fa-person"></i></span>{{ job.gender }}
-                </div>
+
                 <div class="jbs-single-y1 style-3"><span><i class="fa-solid fa-certificate"></i></span>{{
                     job.qualification }}</div>
             </div>
         </div>
         <div class="jbs-grid-job-package-info">
             <div class="jbs-grid-package-title">
-                <h5>GHC {{ job.salary }}<span> / Month</span></h5>
+                <p class="fs-sm">GHC {{ job.salary }}<span> / M</span></p>
             </div>
-            <div class="jbs-grid-posted"><span>{{ new
-                Date(job.created_at).toDateString()
-                    }}</span></div>
+            <div class="jbs-grid-posted"><span>{{ new Date(job.created_at).toLocaleDateString('en-GB', {
+                month: 'short',
+                day: 'numeric', year: 'numeric'
+            }) }}
+                </span></div>
         </div>
         <div class="jbs-grid-job-apply-btns">
             <div class="jbs-btn-groups">
-                <a href="job-detail.html" class="btn btn-md btn-light-primary px-4">View
+                <a :href="route('guest.job-show', job.id)" class="btn btn-sm btn-light-primary px-1">View
                     Detail</a>
-                <a href="JavaScript:Void(0);" class="btn btn-md btn-primary px-4">Quick
+                <a href="JavaScript:Void(0);" class="btn btn-sm btn-primary px-1">Quick
                     Apply</a>
             </div>
         </div>

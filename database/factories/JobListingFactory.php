@@ -24,7 +24,7 @@ class JobListingFactory extends Factory
             'user_id' => fake()->randomElement([6, 7]),
             'job_title' => fake()->sentence(3),
             'gender' => fake()->randomElement(['Male', 'Female', 'Either']),
-            'job_cat' => fake()->randomElement(['It Service', 'Education', 'Customer Service', 'Sales', 'Other']),
+            'category' => fake()->randomElement(['creative', 'customer', 'education', 'engineering', 'finance', 'healthcare', 'sales', 'technology']),
             'qualification' => fake()->randomElement(['Degree', 'Wassce', 'JHS']),
             'region' => fake()->randomElement(['Eastern', 'Greater Accra', 'Bono', 'Oti', 'Savanna', 'Ahafo']),
             'salary' => fake()->numberBetween(10000, 90000),

@@ -1,15 +1,28 @@
 <script setup>
 
 import BreadCrumb from "../../../Components/BreadCrumb.vue";
+import PaginationLinks from "../../../Components/PaginationLinks.vue";
+import { router, useForm } from "@inertiajs/vue3";
 
-
-defineProps({
-
+const props = defineProps({
     jobs: Object,
-    jobCount: Number
+    jobCount: Number,
+    searchTerm: String
+});
+
+
+const form = useForm({
+
+    search: props.searchTerm,
 })
 
+
+const search = () => {
+
+    router.get(route('employer.job-listings.index'), { search: form.search })
+}
 </script>
+
 <template>
 
     {{ console.log(jobs) }}
@@ -34,10 +47,15 @@ defineProps({
                         <div class="card-header">
                             <div class="_mp-inner-content elior">
                                 <div class="_mp-inner-first">
-                                    <div class="search-inline">
-                                        <input type="text" class="form-control" placeholder="Job title, Keywords etc.">
-                                        <button type="button" class="btn btn-primary">Search</button>
-                                    </div>
+                                    <form @submit.prevent="search" class="d-flex justify-content-between">
+                                        <div class="search-inline">
+                                            <input v-model="form.search" type="search" class="form-control"
+                                                placeholder="Search in posted jobs...">
+
+                                            <button type="submit" class="btn btn-primary btn-sm ml-auto">Search</button>
+
+                                        </div>
+                                    </form>
 
                                 </div>
 
@@ -100,10 +118,11 @@ defineProps({
                             <!-- End Row -->
 
                             <!-- Start All List -->
-                            <div v-if="Object.keys(jobs).length" class="row justify-content-start gx-3 gy-4">
+                            <div v-if="jobs && jobs.data && jobs.data.length > 0"
+                                class="row justify-content-start gx-3 gy-4">
 
                                 <!-- Single Item -->
-                                <div v-for="job in jobs" class="col-xl-12 col-lg-12 col-md-12" :key="job.id">
+                                <div v-for="job in jobs.data" class="col-xl-12 col-lg-12 col-md-12" :key="job.id">
                                     <div class="jbs-list-box border">
                                         <div class="jbs-list-head">
                                             <div class="jbs-list-head-thunner">
@@ -147,7 +166,20 @@ defineProps({
                             </div>
                             <!-- End All Job List -->
 
+                            <div v-else class="d-flex justify-content-center align-items-center min-vh-25">
+
+                                <h5 class="text-danger">No Jobs FOund
+                                </h5>
+                            </div>
+                            <div class="pt-3 pt-md-4 pt-lg-5">
+
+                                <PaginationLinks :paginator="jobs" />
+                            </div>
+
+
+
                         </div>
+
                     </div>
                 </div>
             </div>

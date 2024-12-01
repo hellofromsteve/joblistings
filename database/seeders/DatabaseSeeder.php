@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\JobCategories;
 use App\Models\JobCategory;
 use App\Models\JobListing;
 use App\Models\Listing;
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(5)->create();
+        User::factory(25)->create();
 
         User::factory()->create([
 
@@ -34,24 +35,17 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
 
             'full_name' => 'Stephen Asare',
-            'email' => 'e@ee.com',
+            'email' => 'e@e.com',
             'phone' => 666,
             'password' => Hash::make('eee'),
             'account_type' => 'employer',
             'user_account' => 99999999,
         ]);
 
-        User::factory()->create([
-
-            'full_name' => 'Stephen Asare',
-            'email' => 'ee@e.com',
-            'phone' => 123,
-            'password' => Hash::make('eee'),
-            'account_type' => 'employer',
-            'user_account' => 99999991,
-        ]);
 
 
-        JobListing::factory(20)->create();
+
+
+        JobListing::factory(250)->create();
     }
 }

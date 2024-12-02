@@ -25,7 +25,7 @@ defineProps({
                 </div>
             </div>
             <div class="jbs-grid-jbs-saved"><a href="JavaScript:Void(0);" class="bkrs"><i
-                        class="fa-regular fa-bookmark"></i></a></div>
+                        class="fa-regular fa-bookmark text-primary"></i></a></div>
         </div>
         <div class="jbs-grid-job-edrs mt-3">
             <div class="jbs-info-ico-style">

@@ -8,6 +8,7 @@ use App\Models\JobListing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class JobListingController extends Controller
 {
@@ -66,6 +67,10 @@ class JobListingController extends Controller
             'qualification' => 'required|string|max:255',
             'job_desc' => 'required|string',
         ]);
+
+        $fields['slug'] = Str::random(24);
+
+
 
         // dd($fields);
 

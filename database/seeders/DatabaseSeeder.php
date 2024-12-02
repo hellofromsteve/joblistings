@@ -20,25 +20,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(25)->create();
+        // User::factory(4)->create();
 
         User::factory()->create([
 
-            'full_name' => 'Stephen Asare',
-            'email' => 'c@ccc.com',
-            'phone' => 123,
-            'password' => Hash::make('ccc'),
-            'account_type' => 'candidate',
+            'full_name' => 'Stephen Employer',
+            'email' => 'e@e.com',
+            'phone' => 000,
+            'password' => Hash::make('eee'),
+            'account_type' => 'employer',
             'user_account' => 00000000,
         ]);
 
         User::factory()->create([
 
-            'full_name' => 'Stephen Asare',
-            'email' => 'e@e.com',
+            'full_name' => 'Stephen Candidate',
+            'email' => 'c@c.com',
+            'phone' => 111,
+            'password' => Hash::make('ccc'),
+            'account_type' => 'candidate',
+            'user_account' => 222222222,
+        ]);
+
+        User::factory()->create([
+
+            'full_name' => 'Stephen Admin',
+            'email' => 'a@a.com',
             'phone' => 666,
-            'password' => Hash::make('eee'),
-            'account_type' => 'employer',
+            'password' => Hash::make('aaa'),
+            'account_type' => 'admin',
             'user_account' => 99999999,
         ]);
 

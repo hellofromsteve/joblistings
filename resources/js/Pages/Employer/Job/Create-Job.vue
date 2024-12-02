@@ -124,7 +124,7 @@ const submit = () => {
                             </div>
                         </div>
 
-                        <div v-if="cats.length" class="col-xl-6 col-lg-6 col-md-12">
+                        <div class="col-xl-6 col-lg-6 col-md-12">
                             <div class="form-group">
                                 <label for="category">Choose Job Category</label>
                                 <div>

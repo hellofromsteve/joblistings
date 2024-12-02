@@ -21,17 +21,19 @@ class JobListingFactory extends Factory
     {
         return [
 
-            'user_id' => fake()->randomElement([6, 7]),
-            'job_title' => fake()->sentence(3),
+            'user_id' => fake()->randomElement([1, 2, 3]),
+            'job_title' => implode(' ', fake()->words(3)),
             'gender' => fake()->randomElement(['Male', 'Female', 'Either']),
             'category' => fake()->randomElement(['creative', 'customer', 'education', 'engineering', 'finance', 'healthcare', 'sales', 'technology']),
             'qualification' => fake()->randomElement(['Degree', 'Wassce', 'JHS']),
             'region' => fake()->randomElement(['Eastern', 'Greater Accra', 'Bono', 'Oti', 'Savanna', 'Ahafo']),
             'salary' => fake()->numberBetween(10000, 90000),
-            'city' => fake()->randomElement(['Tamale', 'ho', 'Kasoa', 'Kumasi', 'Madina', 'Takoradi']),
+            'city' => fake()->randomElement(['Tamale', 'Ho', 'Kasoa', 'Kumasi', 'Madina', 'Takoradi']),
             'language' => fake()->randomElement(['English', 'Spanish']),
-            'job_desc' => fake()->paragraph(15),
-            'job_status' => 1
+            'job_desc' => fake()->paragraph(25),
+            'job_status' => 1,
+            'slug' => fake()->slug(6)
+
         ];
     }
 }

@@ -1,58 +1,43 @@
 <script setup>
-
 import { router, useForm } from "@inertiajs/vue3";
-import JobCard from "../../../Components/JobCard.vue";
 import PaginationLinks from "../../../Components/PaginationLinks.vue";
-
-
+import { ref } from 'vue';
+import axios from 'axios';
 
 const props = defineProps({
-
     paginateBy: "",
     titleSearched: String,
     categorySelected: String,
     regionSelected: String,
-
-
-    jobs: Object,
-
-
+    jobs: Object, // Assuming jobs are passed down as a prop
 });
 
-
 const form = useForm({
-
     paginateSelector: props.paginateBy || 15,
     title: props.titleSearched,
     category: props.categorySelected,
     region: props.regionSelected,
-
 });
 
-
-
 const submitSearch = () => {
-
-    router.get(route('guest.job-listings'),
-        {
-            title: form.title, category: form.category, region: form.region, paginateSelector: form.paginateSelector,
-        })
-}
-
-
+    router.get(route('guest.job-listings'), {
+        title: form.title,
+        category: form.category,
+        region: form.region,
+        paginateSelector: form.paginateSelector,
+    });
+};
 
 const clearFilter = () => {
     form.reset();
     router.get(route('guest.job-listings'));
-}
+};
 
 
 </script>
 <template>
 
     <Head title="All Jobs |" />
-
-    {{ console.log(jobs) }}
     <!-- ============================ Page Title Start================================== -->
     <div class="page-title bg-cover primary-bg-dark"
         style="background:url(/homeassets/img/bg2.png) no-repeat; margin-top: 6%;">
@@ -201,7 +186,62 @@ const clearFilter = () => {
 
                         <!-- Single Item -->
                         <div v-for="job in jobs.data" :key="job.id" class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-                            <JobCard :job="job" />
+
+
+                            <div class="jbs-grid-layout style_2 border">
+                                <div class="jbs-grid-emp-head">
+                                    <div class="jbs-grid-emp-content">
+
+                                        <div class="jbs-grid-job-caption">
+                                            <div class="jbs-job-employer-wrap"><span>{{ job.job_cat }}</span>
+                                            </div>
+                                            <div class="jbs-job-title-wrap">
+                                                <h4><a :href="route('guest.job-show', job.slug)"
+                                                        class="jbs-job-title">{{
+                                                            job.job_title.substring(0, 25) }}</a>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="jbs-grid-jbs-saved"> <a href="" class="bkrs"><i
+                                                class="fa-regular fa-bookmark text-primary"></i></a>
+                                    </div>
+
+
+                                </div>
+                                <div class="jbs-grid-job-edrs mt-3">
+                                    <div class="jbs-info-ico-style">
+                                        <div class="jbs-single-y1 style-1"><span><i
+                                                    class="fa-solid fa-location-dot"></i></span>{{
+                                                        job.region }}, {{ job.city }}</div>
+
+                                        <div class="jbs-single-y1 style-3"><span><i
+                                                    class="fa-solid fa-certificate"></i></span>{{
+                                                        job.qualification }}</div>
+                                    </div>
+                                </div>
+                                <div class="jbs-grid-job-package-info">
+                                    <div class="jbs-grid-package-title">
+                                        <p class="fs-sm">GHC {{ job.salary }}<span> / M</span></p>
+                                    </div>
+                                    <div class="jbs-grid-posted"><span>{{ new
+                                        Date(job.created_at).toLocaleDateString('en-GB', {
+                                            month: 'short',
+                                            day: 'numeric', year: 'numeric'
+                                        }) }}
+                                        </span></div>
+                                </div>
+                                <div class="jbs-grid-job-apply-btns">
+                                    <div class="jbs-btn-groups">
+                                        <a :href="route('guest.job-show', job.slug)"
+                                            class="btn btn-sm btn-light-primary px-1">View
+                                            Detail</a>
+                                        <a href="JavaScript:Void(0);" class="btn btn-sm btn-primary px-1">Quick
+                                            Apply</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
 

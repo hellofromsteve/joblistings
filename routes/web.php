@@ -9,9 +9,15 @@ use App\Http\Controllers\Employer\JobListingController;
 use App\Http\Controllers\Guest\PageHandlerController;
 use App\Http\Controllers\Guest\ShowJobsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Candidate\BookmarkController;
+use Illuminate\Support\Facades\Auth;
+
+
+
 
 
 // Admin Routes
+
 
 Route::get('/admin/dashboard', [AdminHome::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/job/categories', [AdminHome::class, 'categories'])->name('admin.categories');
@@ -23,7 +29,7 @@ Route::get('/admin/users', [AdminHome::class, 'index'])->name('admin.users');
 Route::get('/', [PageHandlerController::class, 'homeVue'])->name('home');
 Route::inertia('/about', 'Guest/About')->name('about');
 Route::get('/guest/jobs', [ShowJobsController::class, 'index'])->name('guest.job-listings');
-Route::get('/guest/jobs/{job}', [ShowJobsController::class, 'showJob'])->name('guest.job-show');
+Route::get('/guest/jobs/{slug}', [ShowJobsController::class, 'showJob'])->name('guest.job-show');
 
 
 // Email Routes
@@ -40,6 +46,9 @@ Route::middleware(['auth', 'verified', 'candidate'])->prefix('candidate')->group
     Route::post('update/basic', [ProfileController::class, 'storeAdditionalInfo'])->name('candidate.add');
 });
 
+Route::post('/bookmark', [BookmarkController::class, 'toggle'])->name('bookmark.toggle');
+
+Route::get('/user/bookmarks', [BookmarkController::class, 'aaa'])->name('user.bookmarks');
 
 // Employer Routes
 Route::middleware(['auth', 'verified', 'employer'])->prefix('employer')->group(function () {

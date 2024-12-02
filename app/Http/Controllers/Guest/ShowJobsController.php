@@ -29,7 +29,7 @@ class ShowJobsController extends Controller
 
 
         if ($category) {
-            $initialJobs->where('job_cat', 'like', '%' . $category . '%');
+            $initialJobs->where('category', 'like', '%' . $category . '%');
         }
 
         if ($region) {

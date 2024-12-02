@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('salary');
             $table->string('language');
             $table->longText('job_desc');
+            $table->string('slug')->unique();
             $table->boolean('job_status')->default(false);
             $table->timestamps();
         });

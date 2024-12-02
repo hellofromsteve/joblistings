@@ -16,12 +16,13 @@ class JobListing extends Model
         'job_title',
         'job_desc',
         'gender',
-        'job_cat',
+        'category',
         'qualification',
         'salary',
         'language',
         'region',
         'city',
+        'slug',
     ];
 
 

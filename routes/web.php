@@ -1,24 +1,18 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminHome;
-use App\Http\Controllers\BasicController;
 use App\Http\Controllers\Candidate\ProfileController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\Employer\Dashboard;
 use App\Http\Controllers\Employer\JobListingController;
 use App\Http\Controllers\Guest\PageHandlerController;
-use App\Http\Controllers\Guest\ShowJobsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Candidate\BookmarkController;
-use Illuminate\Support\Facades\Auth;
-
-
+use App\Http\Controllers\ListingController;
 
 
 
 // Admin Routes
-
-
 Route::get('/admin/dashboard', [AdminHome::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/job/categories', [AdminHome::class, 'categories'])->name('admin.categories');
 Route::post('/admin/job/categories', [AdminHome::class, 'addCategories']);
@@ -28,8 +22,8 @@ Route::get('/admin/users', [AdminHome::class, 'index'])->name('admin.users');
 // Guest Routes
 Route::get('/', [PageHandlerController::class, 'homeVue'])->name('home');
 Route::inertia('/about', 'Guest/About')->name('about');
-Route::get('/guest/jobs', [ShowJobsController::class, 'index'])->name('guest.job-listings');
-Route::get('/guest/jobs/{slug}', [ShowJobsController::class, 'showJob'])->name('guest.job-show');
+Route::get('/guest/jobs', [ListingController::class, 'showGuestAllListing'])->name('guest.listings');
+Route::get('/guest/jobs/{slug}', [ListingController::class, 'showGuestListing'])->name('guest.listing.show');
 
 
 // Email Routes
@@ -53,11 +47,14 @@ Route::get('/user/bookmarks', [BookmarkController::class, 'aaa'])->name('user.bo
 // Employer Routes
 Route::middleware(['auth', 'verified', 'employer'])->prefix('employer')->group(function () {
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('employer.dashboard');
+    Route::get('/listings', [ListingController::class, 'index'])->name('employer.dashboard');
 });
 
-Route::middleware(['auth', 'verified', 'employer'])->prefix('employer')->name('employer.')->group(function () {
-    Route::resource('job-listings', JobListingController::class);
-});
+Route::middleware(['auth', 'verified', 'employer'])
+    ->prefix('employer')
+    ->name('employer.')
+    ->group(function () {});
+
 
 
 

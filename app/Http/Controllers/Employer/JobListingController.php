@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Employer;
 
 use App\Http\Controllers\Controller;
-use App\Models\JobCategory;
-use App\Models\JobListing;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -23,20 +22,20 @@ class JobListingController extends Controller
         $search = $request->input('search');
 
 
-        $jobsQuery = JobListing::latest()->where('user_id', $user->id);
+        $listingQuery = Listing::latest()->where('user_id', $user->id);
 
         if ($search) {
-            $jobsQuery->where('job_title', 'like', '%' . $search . '%');
+            $listingQuery->where('job_title', 'like', '%' . $search . '%');
         }
 
 
-        $jobs = $jobsQuery->paginate(15)->withQueryString();
+        $jobs = $listingQuery->paginate(15)->withQueryString();
 
 
-        $jobCount = JobListing::where('user_id', $user->id)->count();
+        $listingCount = Listing::where('user_id', $user->id)->count();
 
         return Inertia::render('Employer/Job/Index-Job', [
-            'jobCount' => $jobCount,
+            'jobCount' => $listingCount,
             'jobs' => $jobs,
             'searchTerm' => $request->search,
         ]);
@@ -82,9 +81,11 @@ class JobListingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Listing $listing)
     {
-        //
+        return Inertia::render('Employer/Job/Show-Job', [
+            'job' => $listing,
+        ]);
     }
 
     /**
@@ -92,7 +93,7 @@ class JobListingController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        Listing::where();
     }
 
     /**

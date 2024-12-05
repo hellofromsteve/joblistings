@@ -60,13 +60,8 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-    public function jobListings()
+    public function listing()
     {
-        return  $this->hasMany(JobListing::class);
-    }
-
-    public function bookmarks()
-    {
-        return $this->hasMany(Bookmark::class);
+        return  $this->hasMany(Listing::class);
     }
 }

@@ -3,15 +3,16 @@
 namespace Database\Factories;
 
 use App\Models\JobListing;
+use App\Models\Listing;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\JobListing>
  */
-class JobListingFactory extends Factory
+class ListingFactory extends Factory
 {
 
-    protected $model = JobListing::class;
+    protected $model = Listing::class;
     /**
      * Define the model's default state.
      *
@@ -22,7 +23,7 @@ class JobListingFactory extends Factory
         return [
 
             'user_id' => fake()->randomElement([1, 2, 3]),
-            'job_title' => implode(' ', fake()->words(3)),
+            'title' => implode(' ', fake()->words(3)),
             'gender' => fake()->randomElement(['Male', 'Female', 'Either']),
             'category' => fake()->randomElement(['creative', 'customer', 'education', 'engineering', 'finance', 'healthcare', 'sales', 'technology']),
             'qualification' => fake()->randomElement(['Degree', 'Wassce', 'JHS']),
@@ -30,8 +31,8 @@ class JobListingFactory extends Factory
             'salary' => fake()->numberBetween(10000, 90000),
             'city' => fake()->randomElement(['Tamale', 'Ho', 'Kasoa', 'Kumasi', 'Madina', 'Takoradi']),
             'language' => fake()->randomElement(['English', 'Spanish']),
-            'job_desc' => fake()->paragraph(25),
-            'job_status' => 1,
+            'description' => fake()->paragraph(25),
+            'status' => 1,
             'slug' => fake()->slug(6)
 
         ];

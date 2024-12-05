@@ -1,15 +1,13 @@
 <script setup>
 import { router, useForm } from "@inertiajs/vue3";
 import PaginationLinks from "../../../Components/PaginationLinks.vue";
-import { ref } from 'vue';
-import axios from 'axios';
 
 const props = defineProps({
     paginateBy: "",
     titleSearched: String,
     categorySelected: String,
     regionSelected: String,
-    jobs: Object, // Assuming jobs are passed down as a prop
+    listings: Object, // Assuming jobs are passed down as a prop
 });
 
 const form = useForm({
@@ -20,7 +18,7 @@ const form = useForm({
 });
 
 const submitSearch = () => {
-    router.get(route('guest.job-listings'), {
+    router.get(route('guest.listings'), {
         title: form.title,
         category: form.category,
         region: form.region,
@@ -30,7 +28,7 @@ const submitSearch = () => {
 
 const clearFilter = () => {
     form.reset();
-    router.get(route('guest.job-listings'));
+    router.get(route('guest.listings'));
 };
 
 
@@ -146,7 +144,7 @@ const clearFilter = () => {
             <div class="row">
 
 
-                <div v-if="!jobs.data || jobs.data.length === 0">
+                <div v-if="!listings.data || listings.data.length === 0">
                     <div class="d-flex justify-content-center align-items-center vh-35">
                         <h3 class="text-center">No Jobs Found </h3>
                     </div>
@@ -159,8 +157,9 @@ const clearFilter = () => {
                             <div class="item-shorting-box">
                                 <div class="item-shorting clearfix">
                                     <div class="left-column">
-                                        <h4 class="m-sm-0 mb-2"> Showing {{ jobs.from }} to {{ jobs.to }} Results Out of
-                                            {{ jobs.total }}</h4>
+                                        <h4 class="m-sm-0 mb-2"> Showing {{ listings.from }} to {{ listings.to }}
+                                            Results Out of
+                                            {{ listings.total }}</h4>
                                     </div>
 
 
@@ -182,10 +181,11 @@ const clearFilter = () => {
                         </div>
                     </div>
 
-                    <div v-if="Object.keys(jobs.data).length" class="row justify-content-center gx-xl-3 gx-3 gy-4">
+                    <div v-if="Object.keys(listings.data).length" class="row justify-content-center gx-xl-3 gx-3 gy-4">
 
                         <!-- Single Item -->
-                        <div v-for="job in jobs.data" :key="job.id" class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                        <div v-for="listing in listings.data" :key="listing.id"
+                            class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 
 
                             <div class="jbs-grid-layout style_2 border">
@@ -193,12 +193,12 @@ const clearFilter = () => {
                                     <div class="jbs-grid-emp-content">
 
                                         <div class="jbs-grid-job-caption">
-                                            <div class="jbs-job-employer-wrap"><span>{{ job.job_cat }}</span>
+                                            <div class="jbs-job-employer-wrap"><span>{{ listing.category }}</span>
                                             </div>
                                             <div class="jbs-job-title-wrap">
-                                                <h4><a :href="route('guest.job-show', job.slug)"
+                                                <h4><a :href="route('guest.listing.show', { slug: listing.slug })"
                                                         class="jbs-job-title">{{
-                                                            job.job_title.substring(0, 25) }}</a>
+                                                            listing.title.substring(0, 25) }}</a>
                                                 </h4>
                                             </div>
                                         </div>
@@ -214,19 +214,19 @@ const clearFilter = () => {
                                     <div class="jbs-info-ico-style">
                                         <div class="jbs-single-y1 style-1"><span><i
                                                     class="fa-solid fa-location-dot"></i></span>{{
-                                                        job.region }}, {{ job.city }}</div>
+                                                        listing.region }}, {{ listing.city }}</div>
 
                                         <div class="jbs-single-y1 style-3"><span><i
                                                     class="fa-solid fa-certificate"></i></span>{{
-                                                        job.qualification }}</div>
+                                                        listing.qualification }}</div>
                                     </div>
                                 </div>
                                 <div class="jbs-grid-job-package-info">
                                     <div class="jbs-grid-package-title">
-                                        <p class="fs-sm">GHC {{ job.salary }}<span> / M</span></p>
+                                        <p class="fs-sm">GHC {{ listing.salary }}<span> / M</span></p>
                                     </div>
                                     <div class="jbs-grid-posted"><span>{{ new
-                                        Date(job.created_at).toLocaleDateString('en-GB', {
+                                        Date(listing.created_at).toLocaleDateString('en-GB', {
                                             month: 'short',
                                             day: 'numeric', year: 'numeric'
                                         }) }}
@@ -234,7 +234,7 @@ const clearFilter = () => {
                                 </div>
                                 <div class="jbs-grid-job-apply-btns">
                                     <div class="jbs-btn-groups">
-                                        <a :href="route('guest.job-show', job.slug)"
+                                        <a :href="route('guest.listing.show', { slug: listing.slug })"
                                             class="btn btn-sm btn-light-primary px-1">View
                                             Detail</a>
                                         <a href="JavaScript:Void(0);" class="btn btn-sm btn-primary px-1">Quick
@@ -249,10 +249,8 @@ const clearFilter = () => {
                     </div>
 
 
-
-
                     <!-- Pagination -->
-                    <PaginationLinks :paginator="jobs" />
+                    <PaginationLinks :paginator="listings" />
                     <!-- <TestPages :paginator="jobs" /> -->
 
 

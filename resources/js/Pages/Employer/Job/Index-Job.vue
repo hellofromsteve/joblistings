@@ -5,8 +5,8 @@ import PaginationLinks from "../../../Components/PaginationLinks.vue";
 import { router, useForm } from "@inertiajs/vue3";
 
 const props = defineProps({
-    jobs: Object,
-    jobCount: Number,
+    listings: Object,
+    listingsCount: Number,
     searchTerm: String
 });
 
@@ -25,9 +25,7 @@ const search = () => {
 
 <template>
 
-    {{ console.log(jobs) }}
-
-    <Head title="Employer - Show All Employer Jobs |"></Head>
+    <Head title="Employer - Show All Employer Listings |"></Head>
 
     <div class="dashboard-content">
         <BreadCrumb name="Show All Employer Jobs" accountType="Employer" :dashboardUrl="route('employer.dashboard')"
@@ -98,7 +96,7 @@ const search = () => {
                                                 <li class="nav-item" role="presentation">
                                                     <button class="nav-link active rounded" id="alls"
                                                         data-bs-toggle="tab" type="button" role="tab"
-                                                        aria-selected="true">All: {{ jobCount }}</button>
+                                                        aria-selected="true">All: {{ listingsCount }}</button>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
                                                     <button class="nav-link rounded" id="actives" data-bs-toggle="tab"
@@ -118,11 +116,12 @@ const search = () => {
                             <!-- End Row -->
 
                             <!-- Start All List -->
-                            <div v-if="jobs && jobs.data && jobs.data.length > 0"
+                            <div v-if="listing && listings.data && listings.data.length > 0"
                                 class="row justify-content-start gx-3 gy-4">
 
                                 <!-- Single Item -->
-                                <div v-for="job in jobs.data" class="col-xl-12 col-lg-12 col-md-12" :key="job.id">
+                                <div v-for="listing in listings.data" class="col-xl-12 col-lg-12 col-md-12"
+                                    :key="listing.id">
                                     <div class="jbs-list-box border">
                                         <div class="jbs-list-head">
                                             <div class="jbs-list-head-thunner">
@@ -131,11 +130,14 @@ const search = () => {
                                                                 class="img-fluid" alt=""></figure>
                                                     </a></div>
                                                 <div class="jbs-list-job-caption">
-                                                    <div class="jbs-job-employer-wrap"><span>{{ job.job_cat }}</span>
+                                                    <div class="jbs-job-employer-wrap"><span>{{ listing.job_cat
+                                                            }}</span>
                                                     </div>
                                                     <div class="jbs-job-title-wrap">
-                                                        <h4><a href="job-detail.html" class="jbs-job-title">{{
-                                                            job.job_title }}</a></h4>
+                                                        <h4><a target="_blank"
+                                                                :href="route('employer.job-listings.show', listing.id)"
+                                                                class="jbs-job-title">{{
+                                                                    listing.title }}</a></h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -145,7 +147,8 @@ const search = () => {
                                             </div>
                                             <div class="jbs-list-postedinfo">
                                                 <p class="m-0 text-sm-muted"><strong>Posted : </strong><span
-                                                        class="text-success"> {{ new Date(job.created_at).toDateString()
+                                                        class="text-success"> {{ new
+                                                            Date(listing.created_at).toDateString()
                                                         }}</span></p>
                                                 <p class="m-0 text-sm-muted"><strong>Expired:</strong><span
                                                         class="text-danger">12 Jun 2024</span></p>
@@ -168,7 +171,7 @@ const search = () => {
 
                             <div v-else class="d-flex justify-content-center align-items-center min-vh-25">
 
-                                <h5 class="text-danger">No Jobs FOund
+                                <h5 class="text-danger">No Job Listings FOund
                                 </h5>
                             </div>
                             <div class="pt-3 pt-md-4 pt-lg-5">

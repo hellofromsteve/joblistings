@@ -2,12 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\JobCategories;
-use App\Models\JobCategory;
-use App\Models\JobListing;
 use App\Models\Listing;
-use App\Models\Qualification;
-use App\Models\Regions;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -53,9 +48,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-
-
-
-        JobListing::factory(250)->create();
+        Listing::factory(250)->create();
     }
 }

@@ -3,7 +3,7 @@
 
 defineProps({
 
-    job: Object
+    listing: Object
 });
 
 </script>
@@ -11,10 +11,10 @@ defineProps({
 
 <template>
 
-    <Head :title="`${job.job_title} Show Job Details |`" />
+    <Head title="Show Listing Details |" />
 
     <div class="page-head">
-        {{ job.job_title }}
+        {{ listing.title }}
     </div>
 
 </template>

@@ -9,8 +9,8 @@ defineProps({
 
 
 const form = useForm({
-    title: '',
-    description: '',
+    job_title: '',
+    job_desc: '',
     gender: null,
     category: null,
     city: '',
@@ -63,8 +63,8 @@ const submit = () => {
                         <div class="col-xl-6 col-lg-6 col-md-12">
                             <div class="form-group">
                                 <label>Job Title</label>
-                                <input v-model="form.title" type="text" class="form-control">
-                                <p class="text-danger">{{ form.errors.title }}</p>
+                                <input v-model="form.job_title" type="text" class="form-control">
+                                <p class="text-danger">{{ form.errors.job_title }}</p>
                             </div>
                         </div>
 
@@ -185,8 +185,8 @@ const submit = () => {
                         <div class="col-xl-12 col-lg-12 col-md-12">
                             <div class="form-group">
                                 <label>Job Description</label>
-                                <textarea v-model="form.description" class="form-control ht-80"></textarea>
-                                <p class="text-danger">{{ form.errors.description }}</p>
+                                <textarea v-model="form.job_desc" class="form-control ht-80"></textarea>
+                                <p class="text-danger">{{ form.errors.job_desc }}</p>
                             </div>
                         </div>
 

@@ -41,7 +41,7 @@
                                 <Link :href="route('home')">Home</Link>
                             </li>
                             <li :class="{ active: $page.component === 'Guest/Job/Show' }">
-                                <Link :href="route('guest.job-listings')">All Jobs</Link>
+                                <Link :href="route('guest.listings')">All Jobs</Link>
                             </li>
 
                             <li :class="{ active: $page.component === 'Guest/About' }">

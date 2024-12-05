@@ -27,4 +27,10 @@ class Listing extends Model
     {
         return  $this->belongsTo(User::class);
     }
+
+
+    public function getRouteKeyName()
+    {
+        return 'slug'; // or the custom column you're using
+    }
 }

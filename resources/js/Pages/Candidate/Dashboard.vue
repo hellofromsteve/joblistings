@@ -2,6 +2,10 @@
 import FlashMessage from "../../Components/FlashMessage.vue";
 
 
+defineProps({
+    listing: Number
+})
+
 </script>
 <template>
 
@@ -26,7 +30,6 @@ import FlashMessage from "../../Components/FlashMessage.vue";
         </div>
 
         <div class="dashboard-widg-bar d-block">
-            <FlashMessage v-if="$page.props.flash.message" type="danger" :message="$page.props.flash.message" />
             <!-- Row Start -->
             <div class="row align-items-center gx-4 gy-4 mb-4">
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
@@ -38,8 +41,8 @@ import FlashMessage from "../../Components/FlashMessage.vue";
                         </div>
                         <div class="dash-wrap-bloud-caption">
                             <div class="dash-wrap-bloud-content">
-                                <h5 class="ctr">523</h5>
-                                <p>Applied jobs</p>
+                                <h5 class="ctr">{{ listing }}</h5>
+                                <p>All Jobs</p>
                             </div>
                         </div>
                     </div>
@@ -48,13 +51,13 @@ import FlashMessage from "../../Components/FlashMessage.vue";
                     <div class="dash-wrap-bloud">
                         <div class="dash-wrap-bloud-icon">
                             <div class="bloud-icon text-warning bg-light-warning">
-                                <i class="fa-solid fa-bookmark"></i>
+                                <i class="fa-solid fa-check"></i>
                             </div>
                         </div>
                         <div class="dash-wrap-bloud-caption">
                             <div class="dash-wrap-bloud-content">
                                 <h5 class="ctr">523</h5>
-                                <p>Saved Jobs</p>
+                                <p>Applied Jobs</p>
                             </div>
                         </div>
                     </div>
@@ -95,12 +98,7 @@ import FlashMessage from "../../Components/FlashMessage.vue";
 
 
         </div>
-        <!-- footer -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="py-3 text-center">© 2015 - 2023 Job Stock® Themezhub.</div>
-            </div>
-        </div>
+
 
     </div>
 </template>

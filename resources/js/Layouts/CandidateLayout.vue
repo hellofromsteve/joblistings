@@ -46,9 +46,12 @@ const submit = () => {
                                 <Link :href="route('candidate.profile')">My Profile</Link>
                             </li>
 
+
+
                             <li>
-                                <Link :href="route('about')">Shortlisted Jobs</Link>
+                                <a :href="route('guest.listings')" target="_blank">Show All Jobs</a>
                             </li>
+
 
 
                         </ul>
@@ -56,10 +59,11 @@ const submit = () => {
 
 
 
-                        <ul class="nav-menu nav-menu-social align-to-right">
+                        <ul v-if="$page.props.auth.user.account_type === 'employer'"
+                            class="nav-menu nav-menu-social align-to-right">
 
                             <li class="list-buttons ms-2">
-                                <Link :href="route('job.create')">
+                                <Link href="#">
                                 <i class="fa-solid fa-cloud-arrow-up me-2"></i>Post A
                                 Job
                                 </Link>

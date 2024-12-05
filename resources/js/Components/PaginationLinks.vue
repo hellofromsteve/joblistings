@@ -37,11 +37,11 @@ const getLabel = (label) => {
                     </li>
                 </ul>
 
-                <div v-if="paginator.from && paginator.to" class="item-shorting">
+                <!-- <div v-if="paginator.from && paginator.to" class="item-shorting">
                     <h6 class="m-sm-0 mb-2"> Showing {{ paginator.from }} to {{ paginator.to }} of {{
                         paginator.total
                         }} results.</h6>
-                </div>
+                </div> -->
             </div>
         </nav>
     </div>

@@ -131,14 +131,14 @@ const submit = () => {
                                     <select class="form-select" v-model="form.category" name="category" id="category"
                                         required>
                                         <option value="null" disabled>Choose Job Category</option>
-                                        <option value="creative">Creative & Design</option>
-                                        <option value="customer">Customer Service & Support</option>
-                                        <option value="education">Education & Training</option>
-                                        <option value="engineering">Engineering & Construction</option>
-                                        <option value="finance">Finance & Accounting</option>
-                                        <option value="healthcare">Health Care</option>
-                                        <option value="sales">Sales & Marketing</option>
-                                        <option value="technology">Technology and IT</option>
+                                        <option value="Creative">Creative & Design</option>
+                                        <option value="Customer">Customer Service & Support</option>
+                                        <option value="Education">Education & Training</option>
+                                        <option value="Engineering">Engineering & Construction</option>
+                                        <option value="Finance">Finance & Accounting</option>
+                                        <option value="Healthcare">Health Care</option>
+                                        <option value="Sales">Sales & Marketing</option>
+                                        <option value="Technology">Technology and IT</option>
                                     </select>
                                 </div>
                                 <p class="text-danger">{{ form.errors.category }}</p>

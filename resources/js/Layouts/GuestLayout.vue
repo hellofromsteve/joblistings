@@ -47,14 +47,12 @@
                             <li :class="{ active: $page.component === 'Guest/About' }">
                                 <Link :href="route('about')">About Us</Link>
                             </li>
-                            <li :class="{ active: $page.component === 'Guest/ContatUs' }">
-                                <Link href="#">Contact Us</Link>
+                            <li :class="{ active: $page.component === 'Guest/Contact' }">
+                                <Link :href="route('contact')">Contact Us</Link>
                             </li>
-                            <li :class="{ active: $page.component === 'Guest/Help' }">
-                                <Link href="#">Help</Link>
-                            </li>
+
                             <li :class="{ active: $page.component === 'Guest/Blog' }">
-                                <Link href="#">Blog</Link>
+                                <Link :href="route('blog')">Blog</Link>
                             </li>
 
                         </ul>

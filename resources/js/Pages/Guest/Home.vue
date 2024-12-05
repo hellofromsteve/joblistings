@@ -181,7 +181,7 @@
 							<i class="fa-solid fa-folder-plus text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a :href="route('guest.job-listings', { category: 'creative' })">Creative
+							<h4 class="fs-5"><a :href="route('guest.listings', { category: 'Creative' })">Creative
 									Design</a></h4>
 
 							<p class="text-black fw-medium mb-0">122 Active Jobs</p>
@@ -196,7 +196,7 @@
 							<i class="fa-solid fa-question text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a :href="route('guest.job-listings', { category: 'customer' })">Customer
+							<h4 class="fs-5"><a :href="route('guest.listings', { category: 'Customer' })">Customer
 									Service </a></h4>
 
 							<p class="black fw-medium mb-0">85 Active Jobs</p>
@@ -211,7 +211,7 @@
 							<i class="fa-solid fa-school text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a :href="route('guest.job-listings', { category: 'education' })">Education
+							<h4 class="fs-5"><a :href="route('guest.listings', { category: 'Education' })">Education
 									& Training</a></h4>
 
 							<p class="text-pblack fw-medium mb-0">25 Active Jobs</p>
@@ -226,8 +226,8 @@
 							<i class="fa-solid fa-screwdriver-wrench text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a
-									:href="route('guest.job-listings', { category: 'engineering' })">Engineering &
+							<h4 class="fs-5"><a :href="route('guest.listings', { category: 'Engineering' })">Engineering
+									&
 									Const.</a></h4>
 
 							<p class="text-pblack fw-medium mb-0">212 Active Jobs</p>
@@ -243,7 +243,7 @@
 							<i class="fa-solid fa-filter-circle-dollar text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a :href="route('guest.job-listings', { category: 'finance' })">Finance &
+							<h4 class="fs-5"><a :href="route('guest.listings', { category: 'Finance' })">Finance &
 									Accounting</a></h4>
 
 							<p class="text-pblack fw-medium mb-0">90 Active Jobs</p>
@@ -259,7 +259,7 @@
 						</div>
 						<div class="ctrd-caps">
 							<h4 class="fs-5"><a
-									:href="route('guest.job-listings', { category: 'healthcare' })">HealthCare</a></h4>
+									:href="route('guest.listings', { category: 'Healthcare' })">HealthCare</a></h4>
 
 							<p class="text-pblack fw-medium mb-0">65 Active Jobs</p>
 						</div>
@@ -273,7 +273,7 @@
 							<i class="fa-solid fa-shop text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a :href="route('guest.job-listings', { category: 'sales' })">Sales &
+							<h4 class="fs-5"><a :href="route('guest.listings', { category: 'Sales' })">Sales &
 									Marketing</a></h4>
 
 							<p class="text-pblack fw-medium mb-0">160 Active Jobs</p>
@@ -288,8 +288,8 @@
 							<i class="fa-solid fa-computer text-primary fs-1"></i>
 						</div>
 						<div class="ctrd-caps">
-							<h4 class="fs-5"><a
-									:href="route('guest.job-listings', { category: 'technology' })">Technology & I.T</a>
+							<h4 class="fs-5"><a :href="route('guest.listings', { category: 'Technology' })">Technology &
+									I.T</a>
 							</h4>
 							<p class="text-black fw-medium mb-0">80 Active Jobs</p>
 						</div>
@@ -303,334 +303,6 @@
 	<!-- ============================ Top Job Categories End ================================== -->
 
 
-	<!-- ============================ Featured Jobs Start ================================== -->
-	<section class="gray-simple">
-		<div class="container">
-
-			<div class="row justify-content-center">
-				<div class="col-xl-6 col-lg-7 col-md-10 text-center">
-					<div class="sec-heading center">
-						<h2>Featured Jobs</h2>
-						<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-							voluptatum deleniti atque corrupti quos dolores</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="row justify-content-center gx-xl-3 gx-3 gy-4">
-
-				<!-- Single Item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-					<div class="job-instructor-layout border">
-						<div class="left-tags-capt">
-							<span class="featured-text">Featured</span>
-						</div>
-						<div class="brows-job-type"><span class="full-time">Full Time</span></div>
-						<div class="job-instructor-thumb">
-							<a href="job-detail.html"><img src="https://placehold.co/200x200" class="img-fluid"
-									alt=""></a>
-						</div>
-						<div class="job-instructor-content">
-							<div class="jbs-job-employer-wrap"><span>Shopify<span></span></span></div>
-							<h4 class="instructor-title"><a href="job-detail.html">Technical Content Writer</a></h4>
-							<div class="text-center text-sm-muted">
-								<span><i class="fa-solid fa-location-dot me-2"></i>London, UK</span>
-							</div>
-							<div class="jbs-grid-job-edrs-group center mt-2">
-								<span>HTML</span>
-								<span>CSS3</span>
-								<span>Bootstrap</span>
-								<span>Redux</span>
-							</div>
-						</div>
-						<div class="jbs-grid-job-apply-btns px-3 py-3">
-							<div class="jbs-btn-groups">
-								<div class="jbs-sng-blux">
-									<div class="jbs-grid-package-title smalls">
-										<h5>$80K - 110K<span>\Year</span></h5>
-									</div>
-								</div>
-								<div class="jbs-sng-blux"><a href="JavaScript:Void(0);"
-										class="btn btn-md btn-light-primary px-4">Quick Apply</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Single Item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-					<div class="job-instructor-layout border">
-						<div class="left-tags-capt">
-							<span class="featured-text">Featured</span>
-							<span class="urgent">Urgent</span>
-						</div>
-						<div class="brows-job-type"><span class="enternship">Enternship</span></div>
-						<div class="job-instructor-thumb">
-							<a href="job-detail.html"><img src="https://placehold.co/200x200" class="img-fluid"
-									alt=""></a>
-						</div>
-						<div class="job-instructor-content">
-							<div class="jbs-job-employer-wrap"><span>Deezroo<span></span></span></div>
-							<h4 class="instructor-title"><a href="job-detail.html">Front-end Developer</a></h4>
-							<div class="text-center text-sm-muted">
-								<span><i class="fa-solid fa-location-dot me-2"></i>Canada, USA</span>
-							</div>
-							<div class="jbs-grid-job-edrs-group center mt-2">
-								<span>HTML</span>
-								<span>CSS3</span>
-								<span>Bootstrap</span>
-								<span>Redux</span>
-							</div>
-						</div>
-						<div class="jbs-grid-job-apply-btns px-3 py-3">
-							<div class="jbs-btn-groups">
-								<div class="jbs-sng-blux">
-									<div class="jbs-grid-package-title smalls">
-										<h5>$50K - 70K<span>\Year</span></h5>
-									</div>
-								</div>
-								<div class="jbs-sng-blux"><a href="JavaScript:Void(0);"
-										class="btn btn-md btn-light-primary px-4">Quick Apply</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Single Item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-					<div class="job-instructor-layout border">
-						<div class="left-tags-capt">
-							<span class="urgent">Urgent</span>
-						</div>
-						<div class="brows-job-type"><span class="part-time">Part Time</span></div>
-						<div class="job-instructor-thumb">
-							<a href="job-detail.html"><img src="https://placehold.co/200x200" class="img-fluid"
-									alt=""></a>
-						</div>
-						<div class="job-instructor-content">
-							<div class="jbs-job-employer-wrap"><span>Photoshop<span></span></span></div>
-							<h4 class="instructor-title"><a href="job-detail.html">Expert Team Leader</a></h4>
-							<div class="text-center text-sm-muted">
-								<span><i class="fa-solid fa-location-dot me-2"></i>Denver, USA</span>
-							</div>
-							<div class="jbs-grid-job-edrs-group center mt-2">
-								<span>HTML</span>
-								<span>CSS3</span>
-								<span>Bootstrap</span>
-								<span>Redux</span>
-							</div>
-						</div>
-						<div class="jbs-grid-job-apply-btns px-3 py-3">
-							<div class="jbs-btn-groups">
-								<div class="jbs-sng-blux">
-									<div class="jbs-grid-package-title smalls">
-										<h5>$80K - 90K<span>\Year</span></h5>
-									</div>
-								</div>
-								<div class="jbs-sng-blux"><a href="JavaScript:Void(0);"
-										class="btn btn-md btn-light-primary px-4">Quick Apply</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Single Item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-					<div class="job-instructor-layout border">
-						<div class="left-tags-capt">
-							<span class="featured-text">Featured</span>
-						</div>
-						<div class="brows-job-type"><span class="part-time">Part Time</span></div>
-						<div class="job-instructor-thumb">
-							<a href="job-detail.html"><img src="https://placehold.co/200x200" class="img-fluid"
-									alt=""></a>
-						</div>
-						<div class="job-instructor-content">
-							<div class="jbs-job-employer-wrap"><span>Firefox<span></span></span></div>
-							<h4 class="instructor-title"><a href="job-detail.html">New Shopify Developer</a></h4>
-							<div class="text-center text-sm-muted">
-								<span><i class="fa-solid fa-location-dot me-2"></i>California, USA</span>
-							</div>
-							<div class="jbs-grid-job-edrs-group center mt-2">
-								<span>HTML</span>
-								<span>CSS3</span>
-								<span>Bootstrap</span>
-								<span>Redux</span>
-							</div>
-						</div>
-						<div class="jbs-grid-job-apply-btns px-3 py-3">
-							<div class="jbs-btn-groups">
-								<div class="jbs-sng-blux">
-									<div class="jbs-grid-package-title smalls">
-										<h5>$90K - 100K<span>\Year</span></h5>
-									</div>
-								</div>
-								<div class="jbs-sng-blux"><a href="JavaScript:Void(0);"
-										class="btn btn-md btn-light-primary px-4">Quick Apply</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Single Item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-					<div class="job-instructor-layout border">
-						<div class="left-tags-capt">
-							<span class="featured-text">Featured</span>
-							<span class="urgent">Urgent</span>
-						</div>
-						<div class="brows-job-type"><span class="full-time">Full Time</span></div>
-						<div class="job-instructor-thumb">
-							<a href="job-detail.html"><img src="https://placehold.co/200x200" class="img-fluid"
-									alt=""></a>
-						</div>
-						<div class="job-instructor-content">
-							<div class="jbs-job-employer-wrap"><span>Air BNB<span></span></span></div>
-							<h4 class="instructor-title"><a href="job-detail.html">Sr. Magento Developer</a></h4>
-							<div class="text-center text-sm-muted">
-								<span><i class="fa-solid fa-location-dot me-2"></i>Canada, USA</span>
-							</div>
-							<div class="jbs-grid-job-edrs-group center mt-2">
-								<span>HTML</span>
-								<span>CSS3</span>
-								<span>Bootstrap</span>
-								<span>Redux</span>
-							</div>
-						</div>
-						<div class="jbs-grid-job-apply-btns px-3 py-3">
-							<div class="jbs-btn-groups">
-								<div class="jbs-sng-blux">
-									<div class="jbs-grid-package-title smalls">
-										<h5>$80K - 110K<span>\Year</span></h5>
-									</div>
-								</div>
-								<div class="jbs-sng-blux"><a href="JavaScript:Void(0);"
-										class="btn btn-md btn-light-primary px-4">Quick Apply</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Single Item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-					<div class="job-instructor-layout border">
-						<div class="left-tags-capt">
-							<span class="urgent">Urgent</span>
-						</div>
-						<div class="brows-job-type"><span class="enternship">Enternship</span></div>
-						<div class="job-instructor-thumb">
-							<a href="job-detail.html"><img src="https://placehold.co/200x200" class="img-fluid"
-									alt=""></a>
-						</div>
-						<div class="job-instructor-content">
-							<div class="jbs-job-employer-wrap"><span>Snapchat<span></span></span></div>
-							<h4 class="instructor-title"><a href="job-detail.html">Sr. Code Ignetor Developer</a></h4>
-							<div class="text-center text-sm-muted">
-								<span><i class="fa-solid fa-location-dot me-2"></i>London, UK</span>
-							</div>
-							<div class="jbs-grid-job-edrs-group center mt-2">
-								<span>HTML</span>
-								<span>CSS3</span>
-								<span>Bootstrap</span>
-								<span>Redux</span>
-							</div>
-						</div>
-						<div class="jbs-grid-job-apply-btns px-3 py-3">
-							<div class="jbs-btn-groups">
-								<div class="jbs-sng-blux">
-									<div class="jbs-grid-package-title smalls">
-										<h5>$60K - 90K<span>\Year</span></h5>
-									</div>
-								</div>
-								<div class="jbs-sng-blux"><a href="JavaScript:Void(0);"
-										class="btn btn-md btn-light-primary px-4">Quick Apply</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Single Item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-					<div class="job-instructor-layout border">
-						<div class="left-tags-capt">
-							<span class="featured-text">Featured</span>
-						</div>
-						<div class="brows-job-type"><span class="freelanc">Freelancer</span></div>
-						<div class="job-instructor-thumb">
-							<a href="job-detail.html"><img src="https://placehold.co/200x200" class="img-fluid"
-									alt=""></a>
-						</div>
-						<div class="job-instructor-content">
-							<div class="jbs-job-employer-wrap"><span>Dribbble<span></span></span></div>
-							<h4 class="instructor-title"><a href="job-detail.html">Java & Python Developer</a></h4>
-							<div class="text-center text-sm-muted">
-								<span><i class="fa-solid fa-location-dot me-2"></i>New York, USA</span>
-							</div>
-							<div class="jbs-grid-job-edrs-group center mt-2">
-								<span>HTML</span>
-								<span>CSS3</span>
-								<span>Bootstrap</span>
-								<span>Redux</span>
-							</div>
-						</div>
-						<div class="jbs-grid-job-apply-btns px-3 py-3">
-							<div class="jbs-btn-groups">
-								<div class="jbs-sng-blux">
-									<div class="jbs-grid-package-title smalls">
-										<h5>$85K - 90K<span>\Year</span></h5>
-									</div>
-								</div>
-								<div class="jbs-sng-blux"><a href="JavaScript:Void(0);"
-										class="btn btn-md btn-light-primary px-4">Quick Apply</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Single Item -->
-				<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-					<div class="job-instructor-layout border">
-						<div class="left-tags-capt">
-							<span class="featured-text">Featured</span>
-							<span class="urgent">Urgent</span>
-						</div>
-						<div class="brows-job-type"><span class="full-time">Full Time</span></div>
-						<div class="job-instructor-thumb">
-							<a href="job-detail.html"><img src="https://placehold.co/200x200" class="img-fluid"
-									alt=""></a>
-						</div>
-						<div class="job-instructor-content">
-							<div class="jbs-job-employer-wrap"><span>Skype<span></span></span></div>
-							<h4 class="instructor-title"><a href="job-detail.html">Sr. UI/UX Designer</a></h4>
-							<div class="text-center text-sm-muted">
-								<span><i class="fa-solid fa-location-dot me-2"></i>Denver, USA</span>
-							</div>
-							<div class="jbs-grid-job-edrs-group center mt-2">
-								<span>HTML</span>
-								<span>CSS3</span>
-								<span>Bootstrap</span>
-								<span>Redux</span>
-							</div>
-						</div>
-						<div class="jbs-grid-job-apply-btns px-3 py-3">
-							<div class="jbs-btn-groups">
-								<div class="jbs-sng-blux">
-									<div class="jbs-grid-package-title smalls">
-										<h5>$70K - 95K<span>\Year</span></h5>
-									</div>
-								</div>
-								<div class="jbs-sng-blux"><a href="JavaScript:Void(0);"
-										class="btn btn-md btn-light-primary px-4">Quick Apply</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-	</section>
-	<!-- ============================ Featured Jobs End ================================== -->
 
 
 	<!-- ============================ Top Features & Process Start ================================== -->
@@ -785,150 +457,8 @@
 	<!-- ============================ Top Features & Process End ================================== -->
 
 
-	<!-- ============================ Video Help Start ================================== -->
-	<section class="bg-cover" style="background:#17ac6a url(https://placehold.co/2000x1000)no-repeat;" data-overlay="4">
-		<div class="ht-200"></div>
-		<div class="container">
-			<div class="row align-items-center justify-content-center">
-				<div class="col-xl-12 col-lg-12">
 
-					<div class="overlio-vedio-box">
-						<a href="#" class="play-video-btn text-primary"><i class="fa-solid fa-play"></i></a>
-					</div>
 
-				</div>
-			</div>
-		</div>
-		<div class="ht-200"></div>
-	</section>
-	<!-- ============================ Video Help End ================================== -->
-
-	<!-- ============================ Our Price End ================================== -->
-	<section>
-		<div class="container">
-
-			<div class="row justify-content-center">
-				<div class="col-lg-7 col-md-10 text-center">
-					<div class="sec-heading center">
-						<h2>Explore our Prices</h2>
-						<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-							voluptatum deleniti atque corrupti quos dolores</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="row justify-content-center gx-4 gy-4">
-
-				<!-- Single Box -->
-				<div class="col-xl-4 col-lg-4 col-md-6">
-					<div class="card border rounded-4 p-4 mb-0">
-						<div class="card-headers">
-							<div class="head-title-wroop mb-2">
-								<h6 class="text-primary fw-bold mb-0">Free</h6>
-								<h4><sup class="fw-bold">$</sup><span class="fs-1">0</span><sub
-										class="text-sm-muted">\month</sub></h4>
-							</div>
-							<div class="head-btn-wroop">
-								<button type="button"
-									class="btn btn-md full-width btn-light-primary fw-medium rounded-3">Get
-									Started</button>
-							</div>
-						</div>
-						<hr>
-						<div class="card-body pb-0">
-							<ul class="row gy-4 p-0 pb-0">
-								<li class="fw-medium col-12 ps-0"><span
-										class="square--30 circle d-inline-flex align-items-center justify-content-center text-success bg-light-success me-2"><i
-											class="fa-solid fa-check"></i></span>3 Job Posting</li>
-								<li class="fw-medium col-12 ps-0"><span
-										class="square--30 circle d-inline-flex align-items-center justify-content-center text-success bg-light-success me-2"><i
-											class="fa-solid fa-check"></i></span>2 Featured jobs</li>
-								<li class="fw-medium col-12 ps-0"><span
-										class="square--30 circle d-inline-flex align-items-center justify-content-center text-success bg-light-success me-2"><i
-											class="fa-solid fa-check"></i></span>Job Post For 30 Days</li>
-								<li class="fw-medium col-12 ps-0"><span
-										class="square--30 circle d-inline-flex align-items-center justify-content-center text-success bg-light-success me-2"><i
-											class="fa-solid fa-check"></i></span>Lifetime Support</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<!-- Single Box -->
-				<div class="col-xl-4 col-lg-4 col-md-6">
-					<div class="card border rounded-4 p-4 bg-primary mb-0">
-						<div class="card-headers">
-							<div class="head-title-wroop mb-2">
-								<h6 class="text-warning fw-bold mb-0">STANDARD</h6>
-								<h4 class="text-light"><sup class="fw-bold opacity-75">$</sup><span
-										class="fs-1">29</span><sub
-										class="text-sm-muted text-light opacity-75">\month</sub></h4>
-							</div>
-							<div class="head-btn-wroop">
-								<button type="button" class="btn btn-md full-width btn-warning fw-medium rounded-3">Get
-									Started</button>
-							</div>
-						</div>
-						<hr>
-						<div class="card-body pb-0">
-							<ul class="row gy-4 p-0 pb-0">
-								<li class="fw-medium col-12 ps-0 text-light"><span
-										class="square--30 circle d-inline-flex align-items-center justify-content-center text-light bg-transparent me-2"><i
-											class="fa-solid fa-check"></i></span>10 Job Posting</li>
-								<li class="fw-medium col-12 ps-0 text-light"><span
-										class="square--30 circle d-inline-flex align-items-center justify-content-center text-light bg-transparent me-2"><i
-											class="fa-solid fa-check"></i></span>10 Featured jobs</li>
-								<li class="fw-medium col-12 ps-0 text-light"><span
-										class="square--30 circle d-inline-flex align-items-center justify-content-center text-light bg-transparent me-2"><i
-											class="fa-solid fa-check"></i></span>Job Post For 60 Days</li>
-								<li class="fw-medium col-12 ps-0 text-light"><span
-										class="square--30 circle d-inline-flex align-items-center justify-content-center text-light bg-transparent me-2"><i
-											class="fa-solid fa-check"></i></span>Lifetime Support</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<!-- Single Box -->
-				<div class="col-xl-4 col-lg-4 col-md-6">
-					<div class="card border rounded-4 p-4 mb-0">
-						<div class="card-headers">
-							<div class="head-title-wroop mb-2">
-								<h6 class="text-primary fw-bold mb-0">EXTENDED</h6>
-								<h4><sup class="fw-bold">$</sup><span class="fs-1">79</span><sub
-										class="text-sm-muted">\month</sub></h4>
-							</div>
-							<div class="head-btn-wroop">
-								<button type="button"
-									class="btn btn-md full-width btn-light-primary fw-medium rounded-3">Get
-									Started</button>
-							</div>
-						</div>
-						<hr>
-						<div class="card-body pb-0">
-							<ul class="row gy-4 p-0 pb-0">
-								<li class="fw-medium col-12 ps-0"><span
-										class="square--30 circle d-inline-flex align-items-center justify-content-center text-success bg-light-success me-2"><i
-											class="fa-solid fa-check"></i></span>20 Job Posting</li>
-								<li class="fw-medium col-12 ps-0"><span
-										class="square--30 circle d-inline-flex align-items-center justify-content-center text-success bg-light-success me-2"><i
-											class="fa-solid fa-check"></i></span>25 Featured jobs</li>
-								<li class="fw-medium col-12 ps-0"><span
-										class="square--30 circle d-inline-flex align-items-center justify-content-center text-success bg-light-success me-2"><i
-											class="fa-solid fa-check"></i></span>Job Post For 90 Days</li>
-								<li class="fw-medium col-12 ps-0"><span
-										class="square--30 circle d-inline-flex align-items-center justify-content-center text-success bg-light-success me-2"><i
-											class="fa-solid fa-check"></i></span>Lifetime Support</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-		</div>
-	</section>
-	<!-- ============================ Our Price End ================================== -->
 
 
 	<!-- ============================ Call To Action ================================== -->

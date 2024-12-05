@@ -25,7 +25,7 @@ class ListingFactory extends Factory
             'user_id' => fake()->randomElement([1, 2, 3]),
             'title' => implode(' ', fake()->words(3)),
             'gender' => fake()->randomElement(['Male', 'Female', 'Either']),
-            'category' => fake()->randomElement(['creative', 'customer', 'education', 'engineering', 'finance', 'healthcare', 'sales', 'technology']),
+            'category' => fake()->randomElement(['Creative', 'Customer', 'Education', 'Engineering', 'Finance', 'Healthcare', 'Sales', 'Technology']),
             'qualification' => fake()->randomElement(['Degree', 'Wassce', 'JHS']),
             'region' => fake()->randomElement(['Eastern', 'Greater Accra', 'Bono', 'Oti', 'Savanna', 'Ahafo']),
             'salary' => fake()->numberBetween(10000, 90000),

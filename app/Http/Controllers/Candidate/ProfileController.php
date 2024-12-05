@@ -6,12 +6,26 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Basic;
+use App\Models\Listing;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
 {
+
+    public function candidateDashboard()
+    {
+
+        $listing =  Listing::all()->count();
+
+        return Inertia::render('Candidate/Dashboard', [
+            'listing' => $listing,
+        ]);
+    }
+
+
+
     public function index(Request $request)
     {
 

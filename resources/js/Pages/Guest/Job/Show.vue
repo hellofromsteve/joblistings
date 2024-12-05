@@ -1,6 +1,7 @@
 <script setup>
 import { router, useForm } from "@inertiajs/vue3";
 import PaginationLinks from "../../../Components/PaginationLinks.vue";
+import JobCard from "../../../Components/JobCard.vue";
 
 const props = defineProps({
     paginateBy: "",
@@ -31,11 +32,44 @@ const clearFilter = () => {
     router.get(route('guest.listings'));
 };
 
+const apply = (listing) => {
+    router.post(route('apply', listing), {}, {
+        preserveScroll: true,
+        onSuccess: (page) => {
+            // Check if there's a flash message in the response
+            if (page.props.flash.type === 'Error!') {
+                Swal.fire({
+                    title: page.props.flash.type,
+                    text: page.props.flash.message,
+                    icon: page.props.flash.type,
+                    confirmButtonText: 'OKAY!',
+                });
+            }
+
+            if (page.props.flash.type === 'Success!') {
+                Swal.fire({
+                    title: page.props.flash.type,
+                    text: page.props.flash.message,
+                    icon: page.props.flash.type,
+                    confirmButtonText: 'OKAY!',
+                });
+            }
+        },
+        onError: (errors) => {
+            Swal.fire({
+                title: 'Error!',
+                text: 'An unexpected error occurred.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            });
+        },
+    });
+};
 
 </script>
 <template>
 
-    <Head title="All Jobs |" />
+    <Head title="All Listings |" />
     <!-- ============================ Page Title Start================================== -->
     <div class="page-title bg-cover primary-bg-dark"
         style="background:url(/homeassets/img/bg2.png) no-repeat; margin-top: 6%;">
@@ -66,14 +100,14 @@ const clearFilter = () => {
                                             <select @change="submitSearch" class="form-control" v-model="form.category"
                                                 name="job_cat" id="category" required>
                                                 <option value="null" disabled>Choose Job Category</option>
-                                                <option value="creative">Creative & Design</option>
-                                                <option value="customer">Customer Service & Support</option>
-                                                <option value="education">Education & Training</option>
-                                                <option value="engineering">Engineering & Construction</option>
-                                                <option value="finance">Finance & Accounting</option>
-                                                <option value="healthcare">Health Care</option>
-                                                <option value="sales">Sales & Marketing</option>
-                                                <option value="technology">Technology and IT</option>
+                                                <option value="Creative">Creative & Design</option>
+                                                <option value="Customer">Customer Service & Support</option>
+                                                <option value="Education">Education & Training</option>
+                                                <option value="Engineering">Engineering & Construction</option>
+                                                <option value="Finance">Finance & Accounting</option>
+                                                <option value="Healthcare">Health Care</option>
+                                                <option value="Sales">Sales & Marketing</option>
+                                                <option value="Technology">Technology and IT</option>
                                             </select>
                                             <i class="fa-solid fa-briefcase text-primary"></i>
                                         </div>
@@ -197,7 +231,7 @@ const clearFilter = () => {
                                             </div>
                                             <div class="jbs-job-title-wrap">
                                                 <h4><a :href="route('guest.listing.show', { slug: listing.slug })"
-                                                        class="jbs-job-title">{{
+                                                        target="_blank" class="jbs-job-title">{{
                                                             listing.title.substring(0, 25) }}</a>
                                                 </h4>
                                             </div>
@@ -223,7 +257,8 @@ const clearFilter = () => {
                                 </div>
                                 <div class="jbs-grid-job-package-info">
                                     <div class="jbs-grid-package-title">
-                                        <p class="fs-sm">GHC {{ listing.salary }}<span> / M</span></p>
+                                        <p class="fs-sm">GHC {{ listing.salary }}<span> /
+                                                M</span></p>
                                     </div>
                                     <div class="jbs-grid-posted"><span>{{ new
                                         Date(listing.created_at).toLocaleDateString('en-GB', {
@@ -234,11 +269,11 @@ const clearFilter = () => {
                                 </div>
                                 <div class="jbs-grid-job-apply-btns">
                                     <div class="jbs-btn-groups">
-                                        <a :href="route('guest.listing.show', { slug: listing.slug })"
-                                            class="btn btn-sm btn-light-primary px-1">View
+                                        <a :href="route('guest.listing.show', { slug: listing.slug })" target="_blank"
+                                            class="btn btn-sm btn-light-primary px-3">View
                                             Detail</a>
-                                        <a href="JavaScript:Void(0);" class="btn btn-sm btn-primary px-1">Quick
-                                            Apply</a>
+                                        <button @click="apply(listing)"
+                                            class="btn btn-sm btn-primary p-3">Apply</button>
                                     </div>
                                 </div>
                             </div>

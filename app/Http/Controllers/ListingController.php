@@ -55,6 +55,7 @@ class ListingController extends Controller
     public function showGuestListing(Listing $listing)
     {
 
+
         return Inertia::render('Guest/Job/Individual', [
             'listing' => $listing
         ]);

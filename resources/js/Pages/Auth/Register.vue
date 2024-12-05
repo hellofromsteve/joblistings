@@ -1,7 +1,12 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3'
+import FlashMessage from "../../Components/FlashMessage.vue";
 
 
+
+defineProps({
+	flash: Object
+})
 
 const form = useForm({
 	full_name: "",
@@ -41,6 +46,13 @@ const submit = () => {
 		</div>
 	</section>
 	<!-- ============================ Page Title End ================================== -->
+
+	<div v-if="$page.props.flash.message" class="alert alert-danger d-flex justify-content-center align-item-center"
+		role="alert">
+		{{ $page.props.flash.message }}
+
+	</div>
+
 
 	<!-- ============================ Login Form Start ================================== -->
 	<section class="gray-simple pt-4">

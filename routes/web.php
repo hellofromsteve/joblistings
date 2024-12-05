@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminHome;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\Candidate\ProfileController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\Employer\Dashboard;
@@ -22,8 +23,10 @@ Route::get('/admin/users', [AdminHome::class, 'index'])->name('admin.users');
 // Guest Routes
 Route::get('/', [PageHandlerController::class, 'homeVue'])->name('home');
 Route::inertia('/about', 'Guest/About')->name('about');
+Route::inertia('/contact', 'Guest/Contact')->name('contact');
+Route::inertia('/blog', 'Guest/Blog')->name('blog');
 Route::get('/guest/jobs', [ListingController::class, 'showGuestAllListing'])->name('guest.listings');
-Route::get('/guest/jobs/{slug}', [ListingController::class, 'showGuestListing'])->name('guest.listing.show');
+Route::get('/guest/job/{listing}', [ListingController::class, 'showGuestListing'])->name('guest.listing.show');
 
 
 // Email Routes
@@ -32,9 +35,11 @@ Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'ha
 Route::post('/email/verification-notification', [EmailVerificationController::class, 'resendemail'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
+Route::post('apply/job/{listing}', [ApplicationController::class, 'applyListing'])->name('apply');
+
 // Candidate Routes
 Route::middleware(['auth', 'verified', 'candidate'])->prefix('candidate')->group(function () {
-    Route::get('/dashboard', fn() => inertia('Candidate/Dashboard'))->name('candidate.dashboard');
+    Route::get('/dashboard', [ProfileController::class, 'candidateDashboard'])->name('candidate.dashboard');
     Route::get('/profile', [ProfileController::class, 'index'])->name('candidate.profile');
     Route::post('update/basic', [ProfileController::class, 'storeBasicInfo'])->name('candidate.basic');
     Route::post('update/basic', [ProfileController::class, 'storeAdditionalInfo'])->name('candidate.add');

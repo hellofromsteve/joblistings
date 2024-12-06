@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Applications;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ApplicationController extends Controller
@@ -13,22 +14,28 @@ class ApplicationController extends Controller
     public function applyListing(Request $request, $listing)
     {
 
-        if (!auth()->check()) {
 
-            return redirect()->route('login')->with(
+        if (!Auth::check() || (Auth::user() && !$request->user()->isCandidate())) {
+
+            return back()->with(
                 [
-                    'message' => 'YOU MUST CREATE AN ACCOUNT TO BE ABLE TO APPLY',
-                    'type' => 'Error!'
+                    'message' => 'You Must Be A Candidate Account Holder To Apply',
+                    'type' => 'error'
                 ]
 
             );
         }
 
-        $request->validate([
-            'listing_id' => 'unique',
-        ], [
-            'listing_id.unique' => 'You have already applied for this listing',
-        ]);
+        if (Applications::where('user_id', $request->user()->id)->where('listing_id', $listing)->exists()) {
+            return back()->with(
+                [
+                    'message' => 'You Have Already Applied To This Job',
+                    'type' => 'unique',
+                ]
+            );
+        }
+
+
 
         // Save the application
         $fields =  Applications::create([
@@ -43,7 +50,7 @@ class ApplicationController extends Controller
         // Return success response for Inertia.js
         return back()->with([
             'message' => 'Your application has been successfully submitted!',
-            'type' => 'Success!'
+            'type' => 'success'
         ]);
     }
 }

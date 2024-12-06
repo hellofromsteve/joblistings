@@ -37,20 +37,31 @@ const apply = (listing) => {
         preserveScroll: true,
         onSuccess: (page) => {
             // Check if there's a flash message in the response
-            if (page.props.flash.type === 'Error!') {
+            if (page.props.flash.type === 'error') {
                 Swal.fire({
-                    title: page.props.flash.type,
+                    title: 'Error!',
                     text: page.props.flash.message,
-                    icon: page.props.flash.type,
+                    icon: 'error',
                     confirmButtonText: 'OKAY!',
+                    footer: '<a href="/auth/register">Create An Account</a>'
                 });
             }
 
-            if (page.props.flash.type === 'Success!') {
+            if (page.props.flash.type === 'unique') {
                 Swal.fire({
-                    title: page.props.flash.type,
+                    title: 'Error!',
                     text: page.props.flash.message,
-                    icon: page.props.flash.type,
+                    icon: 'error',
+                    confirmButtonText: 'OKAY!',
+
+                });
+            }
+
+            if (page.props.flash.type === 'success') {
+                Swal.fire({
+                    title: 'Success',
+                    text: page.props.flash.message,
+                    icon: 'success',
                     confirmButtonText: 'OKAY!',
                 });
             }

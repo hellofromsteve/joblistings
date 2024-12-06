@@ -10,8 +10,8 @@ class Listing extends Model
     use HasFactory;
 
     protected $fillable = [
-        'job_title',
-        'job_desc',
+        'title',
+        'description',
         'gender',
         'category',
         'qualification',
@@ -28,6 +28,11 @@ class Listing extends Model
         return  $this->belongsTo(User::class);
     }
 
+
+    public function applications()
+    {
+        return $this->hasMany(Applications::class);
+    }
 
     public function getRouteKeyName()
     {

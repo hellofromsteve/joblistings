@@ -9,6 +9,7 @@ use App\Http\Controllers\Employer\JobListingController;
 use App\Http\Controllers\Guest\PageHandlerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Candidate\BookmarkController;
+use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\ListingController;
 
 
@@ -25,8 +26,8 @@ Route::get('/', [PageHandlerController::class, 'homeVue'])->name('home');
 Route::inertia('/about', 'Guest/About')->name('about');
 Route::inertia('/contact', 'Guest/Contact')->name('contact');
 Route::inertia('/blog', 'Guest/Blog')->name('blog');
-Route::get('/guest/jobs', [ListingController::class, 'showGuestAllListing'])->name('guest.listings');
-Route::get('/guest/job/{listing}', [ListingController::class, 'showGuestListing'])->name('guest.listing.show');
+Route::get('/show/listings', [ListingController::class, 'showGuestAllListing'])->name('guest.listings');
+Route::get('/show/listing/{listing}', [ListingController::class, 'showGuestListing'])->name('guest.listing.show');
 
 
 // Email Routes
@@ -51,14 +52,12 @@ Route::get('/user/bookmarks', [BookmarkController::class, 'aaa'])->name('user.bo
 
 // Employer Routes
 Route::middleware(['auth', 'verified', 'employer'])->prefix('employer')->group(function () {
-    Route::get('/dashboard', [Dashboard::class, 'index'])->name('employer.dashboard');
-    Route::get('/listings', [ListingController::class, 'index'])->name('employer.dashboard');
+    Route::get('/dashboard', [EmployerController::class, 'dashboard'])->name('employer.dashboard');
+    Route::get('/listings', [ListingController::class, 'showAllEmployerListing'])->name('employer.listings');
+    Route::get('/listings/create', [ListingController::class, 'showEmployerListingForm'])->name('employer.create');
+    Route::post('/listings/store', [ListingController::class, 'storeEmployerListing'])->name('employer.store');
+    Route::post('/listings/{listing}', [ListingController::class, 'showAllEmployerListing'])->name('employer.show');
 });
-
-Route::middleware(['auth', 'verified', 'employer'])
-    ->prefix('employer')
-    ->name('employer.')
-    ->group(function () {});
 
 
 

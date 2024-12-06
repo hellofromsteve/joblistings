@@ -8,7 +8,8 @@ defineProps({
 
     categories: Number,
     users: Number,
-    jobs: Number,
+    listings: Number,
+    applicants: Number
 
 })
 
@@ -16,6 +17,7 @@ defineProps({
 </script>
 <template>
 
+    {{ console.log(applicants) }}
 
     <Head title="Employer Dashboard |"></Head>
 
@@ -24,7 +26,7 @@ defineProps({
             currentPage="Employer Dashboard" />
 
         <div class="dashboard-widg-bar d-block">
-            <FlashMessage v-if="$page.props.flash.message" type="danger" :message="$page.props.flash.message" />
+            <!-- <FlashMessage v-if="$page.props.flash.message" type="danger" :message="$page.props.flash.message" /> -->
             <!-- Row Start -->
             <div class="row align-items-center gx-4 gy-4 mb-4">
 
@@ -37,7 +39,7 @@ defineProps({
                         </div>
                         <div class="dash-wrap-bloud-caption">
                             <div class="dash-wrap-bloud-content">
-                                <h5 class="ctr">{{ jobs }}</h5>
+                                <h5 class="ctr">{{ listings }}</h5>
                                 <p>All Jobs</p>
                             </div>
                         </div>
@@ -52,8 +54,8 @@ defineProps({
                         </div>
                         <div class="dash-wrap-bloud-caption">
                             <div class="dash-wrap-bloud-content">
-                                <h5 class="ctr">523</h5>
-                                <p>Pending Reviews</p>
+                                <h5 class="ctr">{{ applicants }}</h5>
+                                <p>All Applicants</p>
                             </div>
                         </div>
                     </div>

@@ -23,7 +23,7 @@ const form = useForm({
 
 
 const submit = () => {
-    form.post(route('employer.job-listings.store'), {
+    form.post(route('employer.store'), {
         preserveScroll: true,
         onSuccess: () => {
             Swal.fire({
@@ -70,20 +70,12 @@ const submit = () => {
 
                         <div class="col-xl-6 col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label>Gender Prefered</label>
-                                <div>
-                                    <select class="form-select" v-model="form.gender" id="gender" name="gender">
-
-                                        <option value="null" disabled>Choose Option</option>
-                                        <option value="Either">Either</option>
-                                        <option value="Female">Female</option>
-                                        <option value="Male">Male</option>
-
-                                    </select>
-                                </div>
-                                <p class="text-danger">{{ form.errors.gender }}</p>
+                                <label>Job Is In Which City(Accra/ Cape Coast/ Sunyani)</label>
+                                <input v-model="form.city" type="text" class="form-control">
+                                <p class="text-danger">{{ form.errors.city }}</p>
                             </div>
                         </div>
+
 
                         <div class="col-xl-6 col-lg-6 col-md-12">
                             <div class="form-group">
@@ -115,14 +107,23 @@ const submit = () => {
                             </div>
                         </div>
 
-
                         <div class="col-xl-6 col-lg-6 col-md-12">
                             <div class="form-group">
-                                <label>Job Is In Which City(Accra/ Cape Coast/ Sunyani)</label>
-                                <input v-model="form.city" type="text" class="form-control">
-                                <p class="text-danger">{{ form.errors.city }}</p>
+                                <label>Gender Prefered</label>
+                                <div>
+                                    <select class="form-select" v-model="form.gender" id="gender" name="gender">
+
+                                        <option value="null" disabled>Choose Option</option>
+                                        <option value="Either">Either</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Male">Male</option>
+
+                                    </select>
+                                </div>
+                                <p class="text-danger">{{ form.errors.gender }}</p>
                             </div>
                         </div>
+
 
                         <div class="col-xl-6 col-lg-6 col-md-12">
                             <div class="form-group">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Applications;
 use Illuminate\Http\Request;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Auth;
@@ -61,6 +62,8 @@ class ListingController extends Controller
         ]);
     }
 
+
+    // Showing Employer Jobs
     public function showAllEmployerListing(Request $request)
     {
 
@@ -69,7 +72,9 @@ class ListingController extends Controller
         $search = $request->input('search');
 
 
-        $listingQuery = Listing::latest()->where('user_id', $user->id);
+        $listingQuery = Listing::latest()
+            ->where('user_id', $user->id)
+            ->withCount('applications');
 
         if ($search) {
             $listingQuery->where('title', 'like', '%' . $search . '%');
@@ -78,20 +83,21 @@ class ListingController extends Controller
 
         $listings = $listingQuery->paginate(15)->withQueryString();
 
-
+        $listingapp = Applications::all();
         $listingCount = Listing::where('user_id', $user->id)->count();
 
         return Inertia::render('Employer/Job/Index-Job', [
             'listinggsCount' => $listingCount,
             'listings' => $listings,
             'searchTerm' => $request->search,
+            'listingapp' => $listingapp,
         ]);
     }
 
     public function showEmployerListingForm()
     {
 
-        return Inertia::render('Employer/Job/Create-Job', []);
+        return Inertia::render('Employer/Job/Create-Job');
     }
 
     public function storeEmployerListing(Request $request)
@@ -110,13 +116,13 @@ class ListingController extends Controller
 
         $fields['slug'] = Str::random(24);
 
+        // dd($fields)['title'];
 
 
-        // dd($fields);
 
         $request->user()->listing()->create($fields);
 
-        return redirect()->route('employer.job-listings.index');
+        return redirect()->route('employer.listings');
     }
 
 

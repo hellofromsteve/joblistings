@@ -22,18 +22,21 @@ const submit = () => {
         <!-- Top header  -->
         <!-- ============================================================== -->
 
+
+
         <!-- Start Navigation -->
         <div class="header header-transparent dark">
             <div class="container">
                 <nav id="navigation" class="navigation navigation-landscape">
+
                     <div class="nav-header">
                         <a class="nav-brand" href="#"><img src="/public/homeassets/img/logo.png" class="logo"
                                 alt="Logo"></a>
                         <div class="nav-toggle"></div>
                         <div class="mobile_nav">
-                            <ul>
+                            <ul v-if="!$page.props.auth.user">
                                 <li class="list-buttons">
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#login">
+                                    <a :href="route('login')">
                                         <i class="fas fa-sign-in-alt me-2"></i>Log In
                                     </a>
                                 </li>
@@ -41,17 +44,31 @@ const submit = () => {
                         </div>
                     </div>
                     <div class="nav-menus-wrapper" style="transition-property: none;">
+
+
                         <ul class="nav-menu">
-                            <li class="active">
+
+
+                            <li :class="{ active: $page.component === 'Candidate/Profile' }">
                                 <Link :href="route('candidate.profile')">My Profile</Link>
                             </li>
 
-
-
-                            <li>
-                                <a :href="route('guest.listings')" target="_blank">Show All Jobs</a>
+                            <li :class="{ active: $page.component === 'Guest/Job/Show' }">
+                                <Link :href="route('guest.listings')"> All Listings</Link>
                             </li>
 
+
+
+                            <li :class="{ active: $page.component === 'Guest/About' }">
+                                <Link :href="route('about')" target="_blank">About Us</Link>
+                            </li>
+                            <li :class="{ active: $page.component === 'Guest/Contact' }">
+                                <Link :href="route('contact')" target="_blank">Contact Us</Link>
+                            </li>
+
+                            <li :class="{ active: $page.component === 'Guest/Blog' }">
+                                <Link :href="route('blog')" target="_blank">Blog</Link>
+                            </li>
 
 
                         </ul>
@@ -59,24 +76,15 @@ const submit = () => {
 
 
 
-                        <ul v-if="$page.props.auth.user.account_type === 'employer'"
-                            class="nav-menu nav-menu-social align-to-right">
 
-                            <li class="list-buttons ms-2">
-                                <Link href="#">
-                                <i class="fa-solid fa-cloud-arrow-up me-2"></i>Post A
-                                Job
-                                </Link>
-                            </li>
-
-
-
-                        </ul>
                     </div>
                 </nav>
             </div>
         </div>
         <!-- End Navigation -->
+
+
+
         <div class="clearfix"></div>
         <!-- ============================================================== -->
         <!-- Top header  -->
@@ -93,8 +101,10 @@ const submit = () => {
 
                     <div class="dashboard-inner">
                         <ul data-submenu-title="Main Navigation">
-                            <li class="active"><a :href="route('candidate.dashboard')"><i
-                                        class="fa-solid fa-gauge-high me-2"></i>My Dashboard</a></li>
+                            <li class="active">
+                                <Link :href="route('candidate.dashboard')"><i class="fa-solid fa-gauge-high me-2"></i>My
+                                Dashboard</Link>
+                            </li>
 
                             <li><a href="candidate-resume.html"><i class="fa-solid fa-file-pdf me-2"></i>My Resumes</a>
                             </li>

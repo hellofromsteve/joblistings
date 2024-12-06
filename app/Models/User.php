@@ -69,4 +69,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Applications::class);
     }
+
+    public function isEmployer()
+    {
+        return $this->account_type === 'employer';
+    }
+
+    public function isCandidate()
+    {
+        return $this->account_type === 'candidate';
+    }
 }

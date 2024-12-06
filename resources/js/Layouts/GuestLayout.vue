@@ -36,12 +36,22 @@
                         </div>
                     </div>
                     <div class="nav-menus-wrapper" style="transition-property: none;">
+
+                        <ul v-if="$page.props.auth.user" class="nav-menu">
+                            <li v-if="$page.props.auth.user.account_type === 'candidate'">
+                                <a :href="route('candidate.dashboard')">Dashboard</a>
+                            </li>
+                            <li v-if="$page.props.auth.user.account_type === 'employer'">
+                                <a :href="route('employer.dashboard')">Dashboard</a>
+                            </li>
+                        </ul>
                         <ul class="nav-menu">
+
                             <li :class="{ active: $page.component === 'Guest/Home' }">
                                 <Link :href="route('home')">Home</Link>
                             </li>
                             <li :class="{ active: $page.component === 'Guest/Job/Show' }">
-                                <Link :href="route('guest.listings')">All Jobs</Link>
+                                <Link :href="route('guest.listings')">All Listings</Link>
                             </li>
 
                             <li :class="{ active: $page.component === 'Guest/About' }">

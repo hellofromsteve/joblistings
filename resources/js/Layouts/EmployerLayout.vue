@@ -26,21 +26,46 @@ const submit = () => {
         <div class="header header-transparent dark">
             <div class="container">
                 <nav id="navigation" class="navigation navigation-landscape">
+
                     <div class="nav-header">
                         <a class="nav-brand" href="#"><img src="/public/homeassets/img/logo.png" class="logo"
                                 alt="Logo"></a>
                         <div class="nav-toggle"></div>
-
+                        <div class="mobile_nav">
+                            <ul v-if="!$page.props.auth.user">
+                                <li class="list-buttons">
+                                    <a :href="route('login')">
+                                        <i class="fas fa-sign-in-alt me-2"></i>Log In
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="nav-menus-wrapper" style="transition-property: none;">
+
+
                         <ul class="nav-menu">
+
+
                             <li :class="{ active: $page.component === 'Employer/Profile' }">
-                                <Link :href="route('candidate.profile')">My Profile</Link>
+                                <Link :href="route('employer.dashboard')">My Profile</Link>
                             </li>
 
-                            <li :class="{ active: $page.component === 'Employer/Job/Index-Job' }">
-                                <Link :href="route('employer.job-listings.index')">My Listed
-                                Jobs</Link>
+                            <li :class="{ active: $page.component === 'Guest/Job/Show' }">
+                                <Link :href="route('guest.listings')"> All Listings</Link>
+                            </li>
+
+
+
+                            <li :class="{ active: $page.component === 'Guest/About' }">
+                                <Link :href="route('about')">About Us</Link>
+                            </li>
+                            <li :class="{ active: $page.component === 'Guest/Contact' }">
+                                <Link :href="route('contact')">Contact Us</Link>
+                            </li>
+
+                            <li :class="{ active: $page.component === 'Guest/Blog' }">
+                                <Link :href="route('blog')">Blog</Link>
                             </li>
 
 
@@ -49,23 +74,13 @@ const submit = () => {
 
 
 
-                        <ul class="nav-menu nav-menu-social align-to-right">
 
-                            <li class="list-buttons ms-2">
-                                <Link :href="route('employer.job-listings.create')"><i
-                                    class="fa-solid fa-cloud-arrow-up me-2"></i>Post A
-                                Job
-                                </Link>
-                            </li>
-
-
-
-                        </ul>
                     </div>
                 </nav>
             </div>
         </div>
         <!-- End Navigation -->
+
         <div class="clearfix"></div>
         <!-- ============================================================== -->
         <!-- Top header  -->
@@ -82,21 +97,31 @@ const submit = () => {
 
                     <div class="dashboard-inner">
                         <ul data-submenu-title="Main Navigation">
-                            <li :class="{ active: $page.component === 'Employer/Dashboard' }"><a
-                                    :href="route('candidate.dashboard')"><i class="fa-solid fa-gauge-high me-2"></i>My
-                                    Dashboard</a></li>
-
-                            <li :class="{ active: $page.component === 'Employer/Job/Index-Job' }"><a
-                                    :href="route('employer.job-listings.index')"><i
-                                        class="fa-solid fa-file-pdf me-2"></i>My Jobs</a>
+                            <li :class="{ active: $page.component === 'Employer/Dashboard' }">
+                                <Link :href="route('employer.dashboard')"><i class="fa-solid fa-gauge-high me-2"></i>My
+                                Dashboard</Link>
                             </li>
 
-                            <li><a href="candidate-saved-jobs.html"><i class="fa-solid fa-bookmark me-2"></i>Shortlist
-                                    Candidates</a></li>
-                            <li><a href="candidate-change-password.html"><i
-                                        class="fa-solid fa-unlock-keyhole me-2"></i>Change Password</a></li>
-                            <li><a href="candidate-delete-account.html"><i class="fa-solid fa-trash-can me-2"></i>Delete
-                                    Account</a></li>
+                            <li :class="{ active: $page.component === 'Employer/Job/Index-Job' }">
+                                <Link :href="route('employer.listings')"><i class="fa-solid fa-file-pdf me-2"></i>My
+                                Listings</Link>
+                            </li>
+                            <li :class="{ active: $page.component === 'Employer/Job/Create-Job' }">
+                                <Link :href="route('employer.create')"><i class="fa-solid fa-file-pdf me-2"></i>Add
+                                Listings</Link>
+                            </li>
+
+                            <li>
+                                <Link href="#"><i class="fa-solid fa-bookmark me-2"></i>Show
+                                Candidates</Link>
+                            </li>
+                            <li>
+                                <Link href="#"><i class="fa-solid fa-unlock-keyhole me-2"></i>Change Password</Link>
+                            </li>
+                            <li>
+                                <Link href="#"><i class="fa-solid fa-trash-can me-2"></i>Delete
+                                Account</Link>
+                            </li>
 
 
                             <div class="px-3   mt-2 block justify-content-center">

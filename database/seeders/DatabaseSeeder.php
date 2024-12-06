@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(4)->create();
+        User::factory(2)->create();
 
         User::factory()->create([
 
@@ -37,17 +37,50 @@ class DatabaseSeeder extends Seeder
             'user_account' => 222222222,
         ]);
 
+
+        User::factory()->create([
+
+            'full_name' => 'Stephen Candidate',
+            'email' => 'c@cc.com',
+            'phone' => 101,
+            'password' => Hash::make('ccc'),
+            'account_type' => 'candidate',
+            'user_account' => 2223332222,
+        ]);
+
+
+        User::factory()->create([
+
+            'full_name' => 'Stephen Candidate',
+            'email' => 'c@ccc.com',
+            'phone' => 198,
+            'password' => Hash::make('ccc'),
+            'account_type' => 'candidate',
+            'user_account' => 2220002222,
+        ]);
+
+
+        User::factory()->create([
+
+            'full_name' => 'Stephen Candidate',
+            'email' => 'c@ccccc.com',
+            'phone' => 073,
+            'password' => Hash::make('ccc'),
+            'account_type' => 'candidate',
+            'user_account' => 2222203823,
+        ]);
+
         User::factory()->create([
 
             'full_name' => 'Stephen Admin',
             'email' => 'a@a.com',
             'phone' => 666,
             'password' => Hash::make('aaa'),
-            'account_type' => 'admin',
+            'account_type' => 'candidate',
             'user_account' => 99999999,
         ]);
 
 
-        Listing::factory(250)->create();
+        Listing::factory(10)->create();
     }
 }

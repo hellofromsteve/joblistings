@@ -7,7 +7,8 @@ import { router, useForm } from "@inertiajs/vue3";
 const props = defineProps({
     listings: Object,
     listingsCount: Number,
-    searchTerm: String
+    searchTerm: String,
+    listingapp: Object
 });
 
 
@@ -19,11 +20,13 @@ const form = useForm({
 
 const search = () => {
 
-    router.get(route('employer.job-listings.index'), { search: form.search })
+    router.get(route('employer.listings'), { search: form.search })
 }
 </script>
 
 <template>
+
+    {{ console.log(listings) }}
 
     <Head title="Employer - Show All Employer Listings |"></Head>
 
@@ -59,7 +62,7 @@ const search = () => {
 
                                 <div class="_mp-inner-first px-5">
 
-                                    <Link :href="route('employer.job-listings.create')"><i
+                                    <Link :href="route('employer.create')"><i
                                         class="fa-solid fa-cloud-arrow-up me-2"></i>Post A New
                                     Job Listing
                                     </Link>
@@ -116,7 +119,7 @@ const search = () => {
                             <!-- End Row -->
 
                             <!-- Start All List -->
-                            <div v-if="listing && listings.data && listings.data.length > 0"
+                            <div v-if="listings.data && listings.data.length > 0"
                                 class="row justify-content-start gx-3 gy-4">
 
                                 <!-- Single Item -->
@@ -130,19 +133,20 @@ const search = () => {
                                                                 class="img-fluid" alt=""></figure>
                                                     </a></div>
                                                 <div class="jbs-list-job-caption">
-                                                    <div class="jbs-job-employer-wrap"><span>{{ listing.job_cat
+                                                    <div class="jbs-job-employer-wrap"><span>{{ listing.category
                                                             }}</span>
                                                     </div>
                                                     <div class="jbs-job-title-wrap">
                                                         <h4><a target="_blank"
-                                                                :href="route('employer.job-listings.show', listing.id)"
+                                                                :href="route('employer.show', listing.slug)"
                                                                 class="jbs-job-title">{{
                                                                     listing.title }}</a></h4>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="jbs-list-applied-users">
-                                                <span class="text-sm-muted text-light bg-warning label">244
+                                                <span class="text-sm-muted text-light bg-warning label">{{
+                                                    listing.applications_count }}
                                                     Applicants</span>
                                             </div>
                                             <div class="jbs-list-postedinfo">
@@ -176,7 +180,7 @@ const search = () => {
                             </div>
                             <div class="pt-3 pt-md-4 pt-lg-5">
 
-                                <PaginationLinks :paginator="jobs" />
+                                <PaginationLinks :paginator="listings" />
                             </div>
 
 

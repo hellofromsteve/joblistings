@@ -13,4 +13,15 @@ class Applications extends Model
         'user_id',
         'listing_id',
     ];
+
+
+    public function listing()
+    {
+        return $this->belongsTo(Listing::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
